@@ -32,17 +32,6 @@ namespace BeanMachine.Scenes
             if(this._loaded)
                 return;
 
-            Sprite sprite1 = new Sprite() { Name = "Bob", Tag = "Tester" };
-            Sprite sprite2 = new Sprite() { Name = "James", Tag = "Tester" };
-            Sprite sprite3 = new Sprite() { Name = "Jeff", Tag = "Jeff" };
-
-            sprite2.AddAddon(new PhysicsSystem.Collider(sprite2, drawCollider: true) { Height = 32, Width = 32 });
-            sprite2.AddAddon(new PhysicsSystem.Collider(sprite2, drawCollider: true) { Height = 64, Width = 64, PositionOffset = new Vector2(100, 100) });
-
-            this.AddToScene(sprite1);
-            this.AddToScene(sprite2);
-            this.AddToScene(sprite3);
-
             this._loaded = true;
         }
 

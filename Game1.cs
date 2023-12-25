@@ -15,8 +15,6 @@ namespace BeanMachine
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Scene _testScene;
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,6 +26,7 @@ namespace BeanMachine
         {
             // TODO: Add your initialization logic here
             Globals.GraphicsDevice = GraphicsDevice;
+            Globals.Content = Content;
             base.Initialize();
         }
 
@@ -36,24 +35,12 @@ namespace BeanMachine
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            _testScene = new Scene("Test");
-
-            SceneManager.ActiveManager.AddNewScene("Test", _testScene);
-            SceneManager.ActiveManager.LoadScene("Test");
-            SceneManager.ActiveManager.SetActiveScene("Test");
-
-            SceneManager.ActiveManager.UnloadScene("Test");
-            
-            Component[] testerSprites = SceneManager.ActiveManager.ActiveScene.GetComponentsWith(tag: "Tester");
-            Component jeff = SceneManager.ActiveManager.ActiveScene.GetComponentWith(name: "Jeff");
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            DebugManager.Update();
 
             // TODO: Add your update logic here
             SceneManager.ActiveManager.ActiveScene.Update(gameTime);
@@ -66,6 +53,8 @@ namespace BeanMachine
         protected override void Draw(GameTime gameTime)
         {
             // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
             _spriteBatch.Begin();
 
             SceneManager.ActiveManager.ActiveScene.Draw(_spriteBatch);

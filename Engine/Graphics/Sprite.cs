@@ -97,7 +97,7 @@ namespace BeanMachine.Graphics
         public override void Draw(SpriteBatch spriteBatch)
         {
             if(this._texture != null) 
-                spriteBatch.Draw(this._texture, this.Position, null, Color.White, this.Rotation, this.Origin, 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(this._texture, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), this.Origin, 1, SpriteEffects.None, 0);
             else if(this._animationManager != null)
                 this._animationManager.Draw(spriteBatch);
         }
@@ -105,8 +105,6 @@ namespace BeanMachine.Graphics
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            DebugManager.Log("Hi");
 
             if (this._animationManager != null)
                 this._animationManager.Update(gameTime);

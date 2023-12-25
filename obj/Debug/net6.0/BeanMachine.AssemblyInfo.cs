@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeanMachine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3fbd166ce1400c8468dcac6425ef95d4b24246e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeanMachine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeanMachine")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

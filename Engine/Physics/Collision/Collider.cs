@@ -18,6 +18,7 @@ namespace BeanMachine.PhysicsSystem
         public int Height { get; set; }
 
         public bool IsSolid { get; set; }
+        public bool IsRaycast {  get; set; }
 
         public Sprite Parent { get; set; }
 
@@ -39,13 +40,15 @@ namespace BeanMachine.PhysicsSystem
 
             this._drawCollider= drawCollider;
 
+            this.IsRaycast = isRaycast;
+
             if(!isRaycast) 
                 Physics.AddGameCollider(this);
         }
 
         public bool CheckCollision(Collider collider)
         {
-            if (collider == this)
+            if (collider.Parent == this.Parent || collider.IsRaycast)
             {
                 return false;
             }
