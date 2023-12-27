@@ -100,3 +100,4 @@ C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.pdb
 C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.genruntimeconfig.cache
 C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\ref\BeanMachine.dll
 C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Square.xnb
+M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Square.xnb

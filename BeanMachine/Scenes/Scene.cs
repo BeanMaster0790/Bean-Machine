@@ -63,6 +63,11 @@ namespace BeanMachine.Scenes
 
                 component.Update(gameTime);
             }
+
+            foreach (Component component in this._sceneComponents.ToArray())
+            {
+                component.LateUpdate();
+            }
         }
 
 

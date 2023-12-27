@@ -12,18 +12,28 @@ namespace BeanMachine.Graphics
         public Scene Scene { get; set; }
 
         public bool ToRemove;
+        private bool _started;
+
+        public virtual void Start()
+        {
+            if (Scene == null)
+                throw new InvalidOperationException("Cannot add component without using 'Scene.AddComponent'");
+            
+            this._started = true;
+        }
 
         public virtual void Update(GameTime gameTime) 
         {
-            if (Scene == null)
-            {
-                throw new InvalidOperationException("Cannot add component without using 'Scene.AddComponent'");
-            }
+            if(!this._started)
+                Start();        
         }
 
         public virtual void LateUpdate() { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
-        public virtual void Destroy() { }
+        public virtual void Destroy()
+        {
+            this.ToRemove= true;
+        }
 
         public Component()
         {

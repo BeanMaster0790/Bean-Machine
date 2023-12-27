@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BeanMachine.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace BeanMachine
 {
     public class Addon
     {
+        public Sprite Parent; 
+
         public virtual void Update(GameTime gameTime) { }
         public virtual void Destroy() { } 
     }

@@ -20,7 +20,6 @@ namespace BeanMachine.Graphics
 
         public Vector2 Origin;
         public Vector2 Position;
-        public Vector2 Direction;
         public Vector2 Velocity;
 
         public float Rotation;
@@ -97,7 +96,7 @@ namespace BeanMachine.Graphics
         public override void Draw(SpriteBatch spriteBatch)
         {
             if(this._texture != null) 
-                spriteBatch.Draw(this._texture, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), this.Origin, 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(this._texture, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), this.Origin, 1, Flipped, 0);
             else if(this._animationManager != null)
                 this._animationManager.Draw(spriteBatch);
         }
@@ -118,17 +117,19 @@ namespace BeanMachine.Graphics
 
         public override void Destroy()
         {
+            base.Destroy();
+
             foreach (Addon addon in Addons.ToArray())
             {
                 addon.Destroy();
                 Addons.Remove(addon);
             }
-
-            base.ToRemove = true;
+            
         }
 
         public void AddAddon(Addon addon)
         {
+            addon.Parent = this;
             this.Addons.Add(addon);
         }
 

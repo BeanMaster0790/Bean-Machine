@@ -11,7 +11,7 @@ namespace BeanMachine.PhysicsSystem
         public static Collider OverlapBox(Vector2 position, int size)
         {
             Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size) {Name = "TempCollider" };
-            tempSprite.AddAddon(new Collider(tempSprite, isRaycast: true) { Height = size, Width = size });
+            tempSprite.AddAddon(new Collider(isRaycast: true) { Height = size, Width = size });
             tempSprite.Position = position;
 
             foreach (Collider collider in Physics.GetGameColliders())
@@ -28,7 +28,7 @@ namespace BeanMachine.PhysicsSystem
         public static Collider[] OverlapBoxAll(Vector2 position, int size)
         {
             Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size);
-            tempSprite.AddAddon(new Collider(tempSprite, true) { Height = size, Width = size });
+            tempSprite.AddAddon(new Collider(isRaycast: true) { Height = size, Width = size });
             tempSprite.Position = position;
 
             List<Collider> result = new List<Collider>();

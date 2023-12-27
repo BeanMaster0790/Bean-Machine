@@ -13,6 +13,8 @@ namespace BeanMachine
     {
         public static GraphicsDevice GraphicsDevice { get; set; }
 
-        public static ContentManager Content; 
+        public static ContentManager Content;
+
+        public static float DeltaTime;
     }
 }

@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Projects/c#/Monogame/Bean-Matchine/Content/Textures/Debug/Square.png","C:/Projects/c#/Monogame/Bean-Matchine/Content/bin/DesktopGL/Textures/Debug/Square.xnb","TextureProcessor","Texture2DContent",229,16469,1.301822
+"M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Square.png","M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/bin/DesktopGL/Textures/Debug/Square.xnb","TextureProcessor","Texture2DContent",229,16469,0.10745

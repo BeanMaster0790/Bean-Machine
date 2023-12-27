@@ -20,8 +20,6 @@ namespace BeanMachine.PhysicsSystem
         public bool IsSolid { get; set; }
         public bool IsRaycast {  get; set; }
 
-        public Sprite Parent { get; set; }
-
         public EventHandler<CollisionEventArgs> OnCollideEvent;
 
         private bool _drawCollider;
@@ -34,10 +32,8 @@ namespace BeanMachine.PhysicsSystem
             }
         }
 
-        public Collider(Sprite parent, bool isRaycast = false, bool drawCollider = false)
+        public Collider(bool isRaycast = false, bool drawCollider = false)
         {
-            this.Parent = parent;
-
             this._drawCollider= drawCollider;
 
             this.IsRaycast = isRaycast;

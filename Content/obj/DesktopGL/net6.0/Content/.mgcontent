@@ -4,7 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Projects/c#/Monogame/Bean-Matchine/Content/Textures/Debug/Square.png</File>
+    <File>M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Square.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
