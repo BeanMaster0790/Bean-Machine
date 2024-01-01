@@ -1,10 +1,11 @@
-﻿using BeanMachine.PhysicsSystem;
+﻿using BeanMachine.Debug;
+using BeanMachine.PhysicsSystem;
 using BeanMachine.Player;
-using BeanMachine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using ProtectTheCenter.Managers;
+using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading;
 
 namespace BeanMachine
@@ -29,30 +30,44 @@ namespace BeanMachine
             Globals.Content = Content;
 
 #if DEBUG
-            Thread debugThread = new Thread(DebugManager.Update);
-            debugThread.Start();
+            Thread debugInformationThread = new Thread(DebugManager.SendDataToDebugConsole);
+            debugInformationThread.Start();
+
+            string debugPath = Environment.CurrentDirectory;
+
+            debugPath = Directory.GetParent(debugPath).Parent.Parent.FullName;
+
+            debugPath += "\\DebugConsole\\DebugConsole.exe";
+
+            Process[] processes = Process.GetProcessesByName("DebugConsole");
+
+            if(processes.Length == 0)
+                Process.Start(debugPath);
 #endif
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
         }
 
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Globals.DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Time.Update(gameTime);
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            this.Update();
 
-
-            InputManager.Update();
             Physics.Update();
 
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+
+            Environment.Exit(0);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -61,12 +76,22 @@ namespace BeanMachine
 
             _spriteBatch.Begin();
 
-            SceneManager.ActiveManager.ActiveScene.Draw(_spriteBatch);
+            Draw(_spriteBatch);
             Physics.DrawColliders(_spriteBatch);
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+
+        }
+
+        public virtual void Update()
+        {
+
         }
     }
 }

@@ -4,9 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Border.png</File>
+    <File>M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Font.spritefont</File>
     <File>M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Square.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

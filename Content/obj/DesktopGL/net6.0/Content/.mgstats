@@ -1,2 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Border.png","M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/bin/DesktopGL/Content/Textures/Debug/Border.xnb","TextureProcessor","Texture2DContent",315,36085,0.1072622
+"M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Font.spritefont","M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/bin/DesktopGL/Content/Textures/Debug/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2073,37919,0.083972
 "M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Square.png","M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/bin/DesktopGL/Content/Textures/Debug/Square.xnb","TextureProcessor","Texture2DContent",229,16469,0.1032003
