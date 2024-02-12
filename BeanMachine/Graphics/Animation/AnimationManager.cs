@@ -6,15 +6,15 @@ namespace BeanMachine.Graphics.Animations
 {
     public class AnimationManager
     {
-        private Sprite _parent;
-
         public Animation CurrentAnimation;
 
-        private float _timer;
+        public EventHandler<FrameEventArgs> FrameEvent;
 
         private bool _isPlaying;
 
-        public EventHandler<FrameEventArgs> FrameEvent;
+        private Sprite _parent;
+
+        private float _timer;
 
         public AnimationManager(Sprite parent, Animation animation)
         {
@@ -54,14 +54,6 @@ namespace BeanMachine.Graphics.Animations
             this._timer = 0;
         }
 
-        public void Stop()
-        {
-            this._isPlaying = false;
-
-            this.CurrentAnimation.CurrentFrame = 0;
-            this._timer = 0;
-        }
-
         public void Pause()
         {
             this._isPlaying = false;
@@ -72,13 +64,21 @@ namespace BeanMachine.Graphics.Animations
             this._isPlaying = true;
         }
 
-        public void Update(GameTime gameTime)
+        public void Stop()
+        {
+            this._isPlaying = false;
+
+            this.CurrentAnimation.CurrentFrame = 0;
+            this._timer = 0;
+        }
+
+        public void Update()
         {
 
             if(!this._isPlaying)
                 return;
 
-            this._timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this._timer += Time.Instance.DeltaTime;
 
             if(this._timer >= CurrentAnimation.FrameSpeed)
             {
@@ -107,7 +107,8 @@ namespace BeanMachine.Graphics.Animations
 
     public class FrameEventArgs : EventArgs
     {
-        public string AnimationName { get; set; }
+        public string AnimationName;
+
         public int CurrentFrame;
     }
 }

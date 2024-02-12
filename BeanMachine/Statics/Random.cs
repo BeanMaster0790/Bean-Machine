@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeanMachine
+﻿namespace BeanMachine
 {
     public static class Random
     {
@@ -26,7 +20,5 @@ namespace BeanMachine
         {
             _seededRandom = new System.Random(seed);
         }
-
-
     }
 }

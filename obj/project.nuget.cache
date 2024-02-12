@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WSSNi6ZUbnaTlCwEGbwOmcUFsm1jnNoNClau3mEmaK+Nj2VfRPHngZvvtSEGporhw4JMRDGe7aGoJ917c8VYYg==",
+  "dgSpecHash": "c5c4s1/EFol4t4CZELnSbBf6faN2tYO6++FFbG0MTBIZnIBebent0VnQCALU3jB24Yw2jwkhPUgJDo6c/ciiHQ==",
   "success": true,
-  "projectFilePath": "M:\\Projects\\Non-Unity\\c#\\MonoGame\\Engine\\BeanMachine\\Bean-Matchine\\BeanMachine.csproj",
+  "projectFilePath": "C:\\Projects\\c#\\Monogame\\Bean-Matchine\\BeanMachine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wilso\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\wilso\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",

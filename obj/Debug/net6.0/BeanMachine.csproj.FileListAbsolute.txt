@@ -104,3 +104,6 @@ M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Newtonsoft.Json.dll
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Border.xnb
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Font.xnb
+C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Border.xnb
+C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Font.xnb
+C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Newtonsoft.Json.dll

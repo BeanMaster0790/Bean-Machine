@@ -12,17 +12,17 @@ namespace BeanMachine.PhysicsSystem
 {
     public class Collider : Addon
     {
-        public Vector2 PositionOffset { get; set; }
+        private bool _drawCollider;
 
-        public int Width { get; set; }
         public int Height { get; set; }
 
         public bool IsSolid { get; set; }
+
         public bool IsRaycast {  get; set; }
 
         public EventHandler<CollisionEventArgs> OnCollideEvent;
 
-        private bool _drawCollider;
+        public Vector2 PositionOffset { get; set; }
 
         public Rectangle Rectangle
         {
@@ -32,6 +32,8 @@ namespace BeanMachine.PhysicsSystem
             }
         }
 
+        public int Width { get; set; }
+
         public Collider(bool isRaycast = false, bool drawCollider = false)
         {
             this._drawCollider= drawCollider;
@@ -39,7 +41,7 @@ namespace BeanMachine.PhysicsSystem
             this.IsRaycast = isRaycast;
 
             if(!isRaycast) 
-                Physics.AddGameCollider(this);
+                Physics.Instance.AddGameCollider(this);
         }
 
         public bool CheckCollision(Collider collider)
@@ -93,11 +95,6 @@ namespace BeanMachine.PhysicsSystem
             return false;
         }
 
-        protected virtual void OnCollide(Collision collision)
-        {
-            OnCollideEvent?.Invoke(this, new CollisionEventArgs(collision));
-        }
-
         public void DrawCollider(SpriteBatch spriteBatch)
         {
             if (!this._drawCollider)
@@ -127,20 +124,23 @@ namespace BeanMachine.PhysicsSystem
 
         public override void Destroy()
         {
-            Physics.RemoveGameCollider(this);
+            Physics.Instance.RemoveGameCollider(this);
+        }
+
+        protected virtual void OnCollide(Collision collision)
+        {
+            OnCollideEvent?.Invoke(this, new CollisionEventArgs(collision));
         }
 
     }
 
     public class CollisionEventArgs : EventArgs
     {
-        public Collision Collision { get; private set; }
-
         public CollisionEventArgs(Collision collision) : base()
         {
             this.Collision = collision;
         }
-            
 
+        public Collision Collision { get; private set; }
     }
 }

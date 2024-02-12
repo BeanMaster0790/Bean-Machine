@@ -6,15 +6,17 @@ using System.Runtime.CompilerServices;
 
 namespace BeanMachine.PhysicsSystem
 {
-    public static class Raycasts
+    public class Raycasts
     {
-        public static Collider OverlapBox(Vector2 position, int size)
+        public static Raycasts Instance = new Raycasts();
+
+        public Collider OverlapBox(Vector2 position, int size)
         {
             Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size) {Name = "TempCollider" };
             tempSprite.AddAddon(new Collider(isRaycast: true) { Height = size, Width = size });
             tempSprite.Position = position;
 
-            foreach (Collider collider in Physics.GetGameColliders())
+            foreach (Collider collider in Physics.Instance.GetGameColliders())
             {
                 if (collider.CheckCollision(tempSprite.GetAddon<Collider>()))
                 {
@@ -25,7 +27,7 @@ namespace BeanMachine.PhysicsSystem
             return null;
         }
 
-        public static Collider[] OverlapBoxAll(Vector2 position, int size)
+        public Collider[] OverlapBoxAll(Vector2 position, int size)
         {
             Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size);
             tempSprite.AddAddon(new Collider(isRaycast: true) { Height = size, Width = size });
@@ -33,7 +35,7 @@ namespace BeanMachine.PhysicsSystem
 
             List<Collider> result = new List<Collider>();
 
-            foreach (Collider collider in Physics.GetGameColliders())
+            foreach (Collider collider in Physics.Instance.GetGameColliders())
             {
                 if (collider.CheckCollision(tempSprite.GetAddon<Collider>()))
                 {
@@ -44,14 +46,14 @@ namespace BeanMachine.PhysicsSystem
             return result.ToArray();
         }
 
-        public static Collider ShootRay(Vector2 position, Vector2 direction, int range)
+        public Collider ShootRay(Vector2 position, Vector2 direction, int range)
         {
             
             Vector2 currentPosition = position;
 
             for(int i = 0; i < range; i++)
             {
-                Collider collider =  Raycasts.OverlapBox(currentPosition, 1);
+                Collider collider =  Raycasts.Instance.OverlapBox(currentPosition, 1);
 
                 if(collider != null)
                 {
@@ -64,7 +66,7 @@ namespace BeanMachine.PhysicsSystem
             return null;
         }
 
-        public static Collider[] ShootRayAll(Vector2 position, Vector2 direction, int range)
+        public Collider[] ShootRayAll(Vector2 position, Vector2 direction, int range)
         {
             Vector2 currentPosition = position;
 
@@ -72,7 +74,7 @@ namespace BeanMachine.PhysicsSystem
 
             for (int i = 0; i < range; i++)
             {
-                Collider collider = Raycasts.OverlapBox(currentPosition, 1);
+                Collider collider = Raycasts.Instance.OverlapBox(currentPosition, 1);
 
                 if (collider != null && !result.Contains(collider))
                 {

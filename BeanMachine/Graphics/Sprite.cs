@@ -9,18 +9,26 @@ namespace BeanMachine.Graphics
 {
     public class Sprite : Component
     {
-        #region Variables
-        protected Texture2D _texture;
+        public List<Addon> Addons = new List<Addon>();
+
+        protected AnimationManager _animationManager;
+
+        protected Dictionary<string, Animation> _animations;
 
         public SpriteEffects Flipped;
 
+        protected Texture2D _texture;
+
         public Vector2 Origin;
+
         public Vector2 Position;
-        public Vector2 Velocity;
+
+        public Sprite Parent;
 
         public float Rotation;
 
         private int _rectWidth;
+
         private int _rectHeight;
 
         public Rectangle Rectangle
@@ -35,20 +43,9 @@ namespace BeanMachine.Graphics
                     return new Rectangle((int)Position.X, (int)Position.Y, _rectWidth, _rectHeight);
             }
         }
-        #endregion
 
-        #region Modules
+        public Vector2 Velocity;
 
-        public Sprite Parent;
-
-        public List<Addon> Addons = new List<Addon>();
-
-        protected AnimationManager _animationManager;
-        protected Dictionary<string, Animation> _animations;
-
-        #endregion
-
-        #region Constructors
         public Sprite( int rectWidth = 0, int rectHeight = 0) : base()
         {       
 
@@ -63,7 +60,7 @@ namespace BeanMachine.Graphics
         {
             this._texture = texture;
 
-            this.Origin = new Vector2(_texture.Width / 2, _texture.Height /2 );
+            this.Origin = new Vector2(this._texture.Width / 2, this._texture.Height /2 );
         } 
 
         public Sprite(Dictionary<string, Animation> animations) : this()
@@ -83,50 +80,33 @@ namespace BeanMachine.Graphics
 
             this._animationManager = new AnimationManager(this, _animations.First().Value);
 
-            this.Origin = new Vector2(_animationManager.CurrentAnimation.FrameWidth / 2, _animationManager.CurrentAnimation.FrameHeight / 2);
-        }
-
-        #endregion
-
-        #region GameLoops
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if(this._texture != null) 
-                spriteBatch.Draw(this._texture, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), this.Origin, 1, Flipped, 0);
-            else if(this._animationManager != null)
-                this._animationManager.Draw(spriteBatch);
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-
-            if (this._animationManager != null)
-                this._animationManager.Update(gameTime);
-
-            foreach (Addon addon in Addons)
-            {
-                addon.Update(gameTime);
-            }
-        }
-        #endregion
-
-        public override void Destroy()
-        {
-            base.Destroy();
-
-            foreach (Addon addon in Addons.ToArray())
-            {
-                addon.Destroy();
-                Addons.Remove(addon);
-            }
-            
+            this.Origin = new Vector2(this._animationManager.CurrentAnimation.FrameWidth / 2, this._animationManager.CurrentAnimation.FrameHeight / 2);
         }
 
         public void AddAddon(Addon addon)
         {
             addon.Parent = this;
             this.Addons.Add(addon);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if(this._texture != null) 
+                spriteBatch.Draw(this._texture, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), this.Origin, 1, this.Flipped, 0);
+            else if(this._animationManager != null)
+                this._animationManager.Draw(spriteBatch);
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+
+            foreach (Addon addon in this.Addons.ToArray())
+            {
+                addon.Destroy();
+                this.Addons.Remove(addon);
+            }
+            
         }
 
         public T GetAddon<T>()
@@ -150,6 +130,19 @@ namespace BeanMachine.Graphics
             }
             
             return list.ToArray();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (this._animationManager != null)
+                this._animationManager.Update();
+
+            foreach (Addon addon in this.Addons)
+            {
+                addon.Update();
+            }
         }
     }
 }

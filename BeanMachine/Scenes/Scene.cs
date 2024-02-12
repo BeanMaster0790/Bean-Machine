@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BeanMachine.Graphics;
-using Microsoft.Xna.Framework;
+﻿using BeanMachine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace BeanMachine.Scenes
 {
     public class Scene
     {
+        public bool _loaded { get; private set; }
 
         public string Name { get; set; }
-
-        public bool _loaded { get; private set; }
 
         private List<Component> _sceneComponents;
 
@@ -24,52 +19,11 @@ namespace BeanMachine.Scenes
             this.Name = name;
         }
 
-        public virtual void LoadScene(object caller = null)
+        public virtual void AddToScene(Component component)
         {
-            if (caller.GetType() != typeof(SceneManager) || caller == null)
-                throw new Exception("'LoadScene()' should only be called by the scene manager!");
-
-            if(this._loaded)
-                return;
-
-            this._loaded = true;
+            component.Scene = this;
+            this._sceneComponents.Add(component);
         }
-
-        public virtual void UnloadScene(object caller = null)
-        {
-            if (caller.GetType() != typeof(SceneManager) || caller == null)
-                throw new Exception("'UnloadScene()' should only be called by the scene manager!");
-
-            if (_loaded == false)
-                return;
-
-            foreach (Component component in _sceneComponents)
-            {
-                component.Destroy();
-            }
-
-            this._loaded = false;
-        }
-
-        public virtual void Update(GameTime gameTime)
-        {
-            foreach (Component component in this._sceneComponents.ToArray())
-            {
-                if (component.ToRemove)
-                {
-                    _sceneComponents.Remove(component);
-                    continue;
-                }
-
-                component.Update(gameTime);
-            }
-
-            foreach (Component component in this._sceneComponents.ToArray())
-            {
-                component.LateUpdate();
-            }
-        }
-
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -77,12 +31,6 @@ namespace BeanMachine.Scenes
             {
                 component.Draw(spriteBatch);
             }
-        }
-
-        public virtual void AddToScene(Component component)
-        {
-            component.Scene = this;
-            this._sceneComponents.Add(component);
         }
 
         public Component GetComponentWith(string tag = "None", string name = "None")
@@ -138,5 +86,52 @@ namespace BeanMachine.Scenes
 
             return components.ToArray();
         }
+
+        public virtual void LoadScene(object caller = null)
+        {
+            if (caller.GetType() != typeof(SceneManager) || caller == null)
+                throw new Exception("'LoadScene()' should only be called by the scene manager!");
+
+            if(this._loaded)
+                return;
+
+            this._loaded = true;
+        }
+
+        public virtual void UnloadScene(object caller = null)
+        {
+            if (caller.GetType() != typeof(SceneManager) || caller == null)
+                throw new Exception("'UnloadScene()' should only be called by the scene manager!");
+
+            if (this._loaded == false)
+                return;
+
+            foreach (Component component in this._sceneComponents)
+            {
+                component.Destroy();
+            }
+
+            this._loaded = false;
+        }
+
+        public virtual void Update()
+        {
+            foreach (Component component in this._sceneComponents.ToArray())
+            {
+                if (component.ToRemove)
+                {
+                    this._sceneComponents.Remove(component);
+                    continue;
+                }
+
+                component.Update();
+            }
+
+            foreach (Component component in this._sceneComponents.ToArray())
+            {
+                component.LateUpdate();
+            }
+        }
+
     }
 }

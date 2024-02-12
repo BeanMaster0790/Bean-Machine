@@ -1,3 +1,3 @@
 ﻿
-using var game = new BeanMachine.Game1();
+using var game = new BeanMachine.Engine();
 game.Run();

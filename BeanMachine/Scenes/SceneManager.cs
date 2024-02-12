@@ -1,31 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeanMachine.Scenes
 {
     public class SceneManager
     {
-        public static SceneManager ActiveManager = new SceneManager();
-
-        private Dictionary<string,Scene> _scenes = new Dictionary<string, Scene>();
+        public static SceneManager Instance = new SceneManager();
 
         public Scene ActiveScene { get; private set; }
 
-        public void AddNewScene(string sceneName, Scene scene)
+        private Dictionary<string,Scene> _scenes = new Dictionary<string, Scene>();
+
+        public void AddNewScene(Scene scene)
         {
-            DoesSceneExist(sceneName, flip: true);
+            DoesSceneExist(scene.Name, flip: true);
 
-            _scenes.Add(sceneName, scene);
-        }
-
-        public void RemoveScene(string sceneName)
-        { 
-            DoesSceneExist(sceneName);
-
-            _scenes.Remove(sceneName);
+            _scenes.Add(scene.Name, scene);
         }
 
         public void LoadScene(string sceneName)
@@ -35,11 +25,11 @@ namespace BeanMachine.Scenes
             _scenes[sceneName].LoadScene(caller: this);
         }
 
-        public void UnloadScene(string sceneName)
-        {
+        public void RemoveScene(string sceneName)
+        { 
             DoesSceneExist(sceneName);
 
-            _scenes[sceneName].UnloadScene(caller: this);
+            _scenes.Remove(sceneName);
         }
 
         public void SetActiveScene(string sceneName)
@@ -53,6 +43,15 @@ namespace BeanMachine.Scenes
 
             this.ActiveScene = scene;
         }
+
+
+        public void UnloadScene(string sceneName)
+        {
+            DoesSceneExist(sceneName);
+
+            _scenes[sceneName].UnloadScene(caller: this);
+        }
+
 
         public void DoesSceneExist(string sceneName, bool flip = false)
         {

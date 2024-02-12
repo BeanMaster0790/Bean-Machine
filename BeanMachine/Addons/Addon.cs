@@ -12,7 +12,8 @@ namespace BeanMachine
     {
         public Sprite Parent; 
 
-        public virtual void Update(GameTime gameTime) { }
         public virtual void Destroy() { } 
+
+        public virtual void Update() { }
     }
 }

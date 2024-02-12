@@ -1,32 +1,20 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeanMachine.PhysicsSystem
 {
-    public static class Physics
+    public class Physics
     {
-        private static List<Collider> _gameColliders = new List<Collider>();
+        public static Physics Instance = new Physics();
+
+        private List<Collider> _gameColliders = new List<Collider>();
         
-        public static void AddGameCollider(Collider collider)
+        public void AddGameCollider(Collider collider)
         {
             _gameColliders.Add(collider);
         }
 
-        public static void RemoveGameCollider(Collider collider)
-        {
-            _gameColliders.Remove(collider);
-        }
-
-        public static Collider[] GetGameColliders()
-        {
-            return _gameColliders.ToArray();
-        }
-
-        public static void DrawColliders(SpriteBatch spriteBatch)
+        public void DrawColliders(SpriteBatch spriteBatch)
         {
             foreach (Collider collider in GetGameColliders())
             {
@@ -34,10 +22,20 @@ namespace BeanMachine.PhysicsSystem
             }
         }
 
+        public Collider[] GetGameColliders()
+        {
+            return _gameColliders.ToArray();
+        }
+
+        public void RemoveGameCollider(Collider collider)
+        {
+            _gameColliders.Remove(collider);
+        }
+
         /// <summary>
         /// Should be called AFTER main update loop
         /// </summary>
-        public static void Update()
+        public void Update()
         {
             foreach (Collider currentCollider in GetGameColliders())
             {

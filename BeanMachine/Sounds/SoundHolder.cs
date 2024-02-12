@@ -47,9 +47,9 @@ namespace BeanMachine.Sounds
             SoundManager.Instance.ResumeSound(this._sounds[name].SoundKey);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
-            base.Update(gameTime);
+            base.Update();
 
             foreach (KeyValuePair<string, Sound> sound in this._sounds)
             {
