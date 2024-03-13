@@ -3,6 +3,7 @@
     public class Collision
     {
         public Collider BaseCollider { get; set; }
+
         public Collider Collider { get; set; }
 
         public CollisionDirection[] Directions { get; set; }

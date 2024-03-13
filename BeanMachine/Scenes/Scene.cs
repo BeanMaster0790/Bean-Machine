@@ -1,4 +1,6 @@
 ﻿using BeanMachine.Graphics;
+using BeanMachine.Sounds;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,16 +9,26 @@ namespace BeanMachine.Scenes
 {
     public class Scene
     {
+        public Camera Camera;
+
         public bool _loaded { get; private set; }
 
         public string Name { get; set; }
 
         private List<Component> _sceneComponents;
 
+        public SoundManager SoundManager { get; private set; }
+
+
         public Scene(string name)
-        { 
+        {
             this._sceneComponents = new List<Component>();
+
             this.Name = name;
+
+            this.Camera = new Camera(Globals.GraphicsDeviceManager, Globals.GraphicsDevice, this);
+
+            this.SoundManager = new SoundManager();
         }
 
         public virtual void AddToScene(Component component)
@@ -27,10 +39,7 @@ namespace BeanMachine.Scenes
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Component component in this._sceneComponents.ToArray())
-            {
-                component.Draw(spriteBatch);
-            }
+            this.Camera.Draw(spriteBatch, this._sceneComponents);
         }
 
         public Component GetComponentWith(string tag = "None", string name = "None")
@@ -92,7 +101,7 @@ namespace BeanMachine.Scenes
             if (caller.GetType() != typeof(SceneManager) || caller == null)
                 throw new Exception("'LoadScene()' should only be called by the scene manager!");
 
-            if(this._loaded)
+            if (this._loaded)
                 return;
 
             this._loaded = true;
@@ -111,11 +120,15 @@ namespace BeanMachine.Scenes
                 component.Destroy();
             }
 
+            this.SoundManager.Destroy();
+
             this._loaded = false;
         }
 
         public virtual void Update()
         {
+            this.SoundManager.AudioListener.Position = new Vector3(this.Camera.Position, 0); 
+
             foreach (Component component in this._sceneComponents.ToArray())
             {
                 if (component.ToRemove)

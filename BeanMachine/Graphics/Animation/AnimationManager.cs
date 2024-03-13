@@ -1,26 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace BeanMachine.Graphics.Animations
 {
-    public class AnimationManager
+    public class AnimationManager : Addon
     {
+        public Dictionary<string, Animation> Animations;
+
         public Animation CurrentAnimation;
 
         public EventHandler<FrameEventArgs> FrameEvent;
 
         private bool _isPlaying;
 
-        private Sprite _parent;
-
         private float _timer;
 
-        public AnimationManager(Sprite parent, Animation animation)
-        {
-            this._parent = parent;
-            
-            this.CurrentAnimation = animation;
+        public AnimationManager(Sprite parent, Dictionary<string, Animation> animations)
+        {   
+            this.Animations = animations;
 
             this._isPlaying = false;
         }
@@ -29,15 +28,15 @@ namespace BeanMachine.Graphics.Animations
         {
             if(this.CurrentAnimation.AnimationRow == 0)
             {
-                spriteBatch.Draw(this.CurrentAnimation.Texture, this._parent.Position,
+                spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position,
                 new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, 0, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
-                Color.White, this._parent.Rotation, this._parent.Origin, 1, this._parent.Flipped, 0);
+                Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, 1, base.Parent.Flipped, 0);
             }
             else
             {
-                spriteBatch.Draw(this.CurrentAnimation.Texture, this._parent.Position,
+                spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position,
                 new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, this.CurrentAnimation.AnimationRow * this.CurrentAnimation.FrameHeight, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
-                Color.White, this._parent.Rotation, this._parent.Origin, 1, this._parent.Flipped, 0);
+                Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, 1, base.Parent.Flipped, 0);
             }
         }
 
@@ -72,7 +71,7 @@ namespace BeanMachine.Graphics.Animations
             this._timer = 0;
         }
 
-        public void Update()
+        public override void Update()
         {
 
             if(!this._isPlaying)

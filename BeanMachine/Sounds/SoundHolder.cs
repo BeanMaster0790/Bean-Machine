@@ -12,39 +12,39 @@ namespace BeanMachine.Sounds
         {
             this._sounds.Add(name, sound);
 
-            SoundManager.Instance.AddSound(sound);
+            Parent.Scene.SoundManager.AddSound(sound);
         }
 
         public void RemoveSound(string name)
         {
             this.RemoveSound(name);
 
-            SoundManager.Instance.RemoveSound(this._sounds[name]);
+            Parent.Scene.SoundManager.RemoveSound(this._sounds[name]);
         }
 
         public void PlaySound(string name)
         {
-            SoundManager.Instance.PlaySound(this._sounds[name].SoundKey);
+            Parent.Scene.SoundManager.PlaySound(this._sounds[name].SoundKey);
         }
 
         public void PlaySound(string name, Vector2 position)
         {
-            SoundManager.Instance.PlaySound(this._sounds[name].SoundKey);
+            Parent.Scene.SoundManager.PlaySound(this._sounds[name].SoundKey);
         }
 
         public void PauseSound(string name)
         {
-            SoundManager.Instance.PauseSound(this._sounds[name].SoundKey);
+            Parent.Scene.SoundManager.PauseSound(this._sounds[name].SoundKey);
         }
 
         public void StopSound(string name)
         {
-            SoundManager.Instance.StopSound(this._sounds[name].SoundKey);
+            Parent.Scene.SoundManager.StopSound(this._sounds[name].SoundKey);
         }
 
         public void ResumeSound(string name)
         {
-            SoundManager.Instance.ResumeSound(this._sounds[name].SoundKey);
+            Parent.Scene.SoundManager.ResumeSound(this._sounds[name].SoundKey);
         }
 
         public override void Update()
@@ -55,9 +55,9 @@ namespace BeanMachine.Sounds
             {
                 if (sound.Value.Is3D)
                 {
-                    SoundManager.Instance.UpdateSoundPan(sound.Value.SoundKey, base.Parent.Position);
-                    SoundManager.Instance.UpdateSoundVoloume(sound.Value.SoundKey, base.Parent.Position);
-                    SoundManager.Instance.UpdateSoundModifier(sound.Value.SoundKey);
+                    Parent.Scene.SoundManager.UpdateSoundPan(sound.Value.SoundKey, base.Parent.Position);
+                    Parent.Scene.SoundManager.UpdateSoundVoloume(sound.Value.SoundKey, base.Parent.Position);
+                    Parent.Scene.SoundManager.UpdateSoundModifier(sound.Value.SoundKey);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace BeanMachine.Sounds
         {
             foreach (KeyValuePair<string,Sound> sound in this._sounds)
             {
-                SoundManager.Instance.DestroySound(sound.Value.SoundKey);
+                Parent.Scene.SoundManager.DestroySound(sound.Value.SoundKey);
             }
 
             base.Destroy();

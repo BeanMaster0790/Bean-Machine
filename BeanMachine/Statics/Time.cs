@@ -5,16 +5,18 @@ namespace BeanMachine
 {
     public class Time
     {
-        public static Time Instance = new Time();
+        public float DeltaTime { get; private set; }
 
         public int Fps = 0;
 
-        public float DeltaTime { get; private set; }
+        public static Time Instance = new Time();
+
+        private long _lastMilsSinceStart = 0;
+
+        private long _milsSinceStart = 0;
 
         public float SecondsSinceStart { get; private set; }
 
-        private long _milsSinceStart = 0;
-        private long _lastMilsSinceStart = 0;
 
         public void Update(GameTime gameTime)
         {
@@ -27,13 +29,15 @@ namespace BeanMachine
 
             long difference = this._milsSinceStart - _lastMilsSinceStart;
 
-            DebugManager.Instance.Monitor(difference, "Diff");
 
             if(difference > 0)
             {
                 float fps = 1000 / difference;
                 this.Fps = (int)fps;
             }
+
+            DebugManager.Instance.Monitor(difference, "Frame Time");
+            DebugManager.Instance.Monitor(Fps, "FPS");
 
         }
     }

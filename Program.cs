@@ -1,3 +1,5 @@
 ﻿
-using var game = new BeanMachine.Engine();
+using BeanGame;
+
+using var game = new BeanGame.BeanGame();
 game.Run();

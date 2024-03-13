@@ -67,7 +67,6 @@ M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfoInputs.cache
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfo.cs
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.CoreCompileInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.CopyComplete
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.dll
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\refint\BeanMachine.dll
 M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.pdb
@@ -107,3 +106,5 @@ M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net
 C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Border.xnb
 C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Font.xnb
 C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Newtonsoft.Json.dll
+M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.sourcelink.json
+M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMach.74A30272.Up2Date

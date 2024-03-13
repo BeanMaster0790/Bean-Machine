@@ -7,11 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework.Graphics;
+using BeanMachine.Debug;
 
 namespace BeanMachine.PhysicsSystem
 {
     public class Collider : Addon
     {
+        public List<Collider> CheckedColliders;
+
         private bool _drawCollider;
 
         public int Height { get; set; }
@@ -40,16 +43,52 @@ namespace BeanMachine.PhysicsSystem
 
             this.IsRaycast = isRaycast;
 
+            this.CheckedColliders= new List<Collider>();
+
             if(!isRaycast) 
                 Physics.Instance.AddGameCollider(this);
         }
 
-        public bool CheckCollision(Collider collider)
+        public override void Update()
         {
-            if (collider.Parent == this.Parent || collider.IsRaycast)
+            this.CheckedColliders.Clear();
+            base.Update();
+        }
+
+        public bool CheckCollision(Collider collider, bool isRay = false)
+        {
+            if(collider == null)
             {
                 return false;
             }
+
+            if(this.CheckedColliders.Contains(collider) || collider.CheckedColliders.Contains(this))
+            {
+                return false;
+            }
+
+            if (collider.Parent == this.Parent)
+            {
+                return false;
+            }
+
+            if(!isRay && collider.IsRaycast)
+            {
+                return false;
+            }
+
+            if(isRay && collider.IsRaycast)
+            {
+                return false;
+            }
+
+            if(Vector2.Distance(this.Parent.Position, collider.Parent.Position) > this.Rectangle.Width)
+            {
+              return false;
+            }
+
+            this.CheckedColliders.Add(collider);
+            collider.CheckedColliders.Add(this);
 
             CollisionDirection[] directions = { CollisionDirection.None, CollisionDirection.None };
 

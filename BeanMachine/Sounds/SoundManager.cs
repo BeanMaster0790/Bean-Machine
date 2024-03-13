@@ -8,8 +8,6 @@ namespace BeanMachine.Sounds
 {
     public class SoundManager
     {
-        public static SoundManager Instance = new SoundManager();
-
         private Dictionary<int, Sound> _soundEffects = new Dictionary<int, Sound>();
 
         private Dictionary<int, SoundEffectInstance> _soundInstances = new Dictionary<int, SoundEffectInstance>();
@@ -22,9 +20,35 @@ namespace BeanMachine.Sounds
             _soundEffects.Add(sound.SoundKey, sound);
         }
 
-        public void RemoveSound(Sound sound) 
-        { 
-            _soundEffects.Remove(sound.SoundKey);
+        public void DestroySound(int key)
+        {
+
+            if (this._soundInstances.ContainsKey(key))
+            {
+                this._soundInstances[key].Stop();
+                this._soundInstances[key].Dispose();
+
+
+                this._soundInstances.Remove(key);
+            }
+
+            if (this._clonedSoundInstances.ContainsKey(key))
+            {
+                this._clonedSoundInstances[key].Stop();
+                this._clonedSoundInstances[key].Dispose();
+
+                this._clonedSoundInstances.Remove(key);
+            }
+
+            this._soundEffects.Remove(key);
+        }
+
+        public void Destroy()
+        {
+            foreach(int key in this._soundEffects.Keys)
+            {
+                this.DestroySound(key);
+            }
         }
 
         public int GenerateSoundKey()
@@ -37,10 +61,10 @@ namespace BeanMachine.Sounds
 
                 bool keyTaken = false;
 
-                foreach (KeyValuePair<int,Sound> sound in this._soundEffects)
+                foreach (KeyValuePair<int, Sound> sound in this._soundEffects)
                 {
                     if (sound.Key == key)
-                        keyTaken = true;                
+                        keyTaken = true;
                 }
 
                 if (!keyTaken)
@@ -63,7 +87,10 @@ namespace BeanMachine.Sounds
 
             instance.Play();
 
-            this._soundInstances.Add(key, instance);
+            instance.Volume = sound.MaxVoloume;
+
+            if (!this._soundInstances.ContainsKey(key))
+                this._soundInstances.Add(key, instance);
 
             if (sound.Is3D)
             {
@@ -75,7 +102,8 @@ namespace BeanMachine.Sounds
 
                 clonedInstance.Play();
 
-                this._clonedSoundInstances.Add(key, clonedInstance);
+                if (!this._clonedSoundInstances.ContainsKey(key))
+                    this._clonedSoundInstances.Add(key, clonedInstance);
             }
         }
 
@@ -87,6 +115,11 @@ namespace BeanMachine.Sounds
             {
                 this._clonedSoundInstances[key].Pause();
             }
+        }
+
+        public void RemoveSound(Sound sound)
+        {
+            _soundEffects.Remove(sound.SoundKey);
         }
 
         public void ResumeSound(int key)
@@ -109,27 +142,11 @@ namespace BeanMachine.Sounds
             }
         }
 
-        public void DestroySound(int key)
-        {
-            this._soundInstances[key].Stop();
-            this._soundInstances[key].Dispose();
-
-
-            this._soundInstances.Remove(key);
-
-            if (this._clonedSoundInstances.ContainsKey(key))
-            {
-                this._clonedSoundInstances[key].Stop();
-                this._clonedSoundInstances[key].Dispose();
-
-                this._clonedSoundInstances.Remove(key);
-            }
-
-            this._soundEffects.Remove(key);
-        }
-
         public void UpdateSoundPan(int key, Vector2 position)
         {
+            if (!this._soundInstances.ContainsKey(key))
+                return;
+
             SoundEffectInstance instance = this._soundInstances[key];
             SoundEffectInstance clonedInstance = this._clonedSoundInstances[key];
 
@@ -145,13 +162,13 @@ namespace BeanMachine.Sounds
 
             soundPan /= 90;
 
-            if(soundPan >= -1 && soundPan <= 1)
+            if (soundPan >= -1 && soundPan <= 1)
             {
-                if(direction.Y >= 0)
+                if (direction.Y >= 0)
                 {
                     instance.Pan = -soundPan;
 
-                    clonedInstance.Pan = soundPan;     
+                    clonedInstance.Pan = soundPan;
                 }
                 else
                 {
@@ -165,6 +182,9 @@ namespace BeanMachine.Sounds
         public void UpdateSoundVoloume(int key, Vector2 position)
         {
             Sound sound = this._soundEffects[key];
+
+            if (!this._soundInstances.ContainsKey(key))
+                return;
 
             SoundEffectInstance instance = this._soundInstances[key];
             SoundEffectInstance clonedInstance = this._clonedSoundInstances[key];
@@ -194,6 +214,9 @@ namespace BeanMachine.Sounds
         public void UpdateSoundModifier(int key)
         {
             Sound sound = this._soundEffects[key];
+
+            if (!this._soundInstances.ContainsKey(key))
+                return;
 
             SoundEffectInstance instance = this._soundInstances[key];
             SoundEffectInstance clonedInstance = this._clonedSoundInstances[key];

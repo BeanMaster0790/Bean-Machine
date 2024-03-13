@@ -1,14 +1,15 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace BeanMachine.PhysicsSystem
 {
     public class Physics
     {
+        private List<Collider> _gameColliders = new List<Collider>();
+
         public static Physics Instance = new Physics();
 
-        private List<Collider> _gameColliders = new List<Collider>();
-        
         public void AddGameCollider(Collider collider)
         {
             _gameColliders.Add(collider);
@@ -32,18 +33,23 @@ namespace BeanMachine.PhysicsSystem
             _gameColliders.Remove(collider);
         }
 
-        /// <summary>
-        /// Should be called AFTER main update loop
-        /// </summary>
         public void Update()
         {
-            foreach (Collider currentCollider in GetGameColliders())
+            while (true)
             {
-                foreach (Collider collider in GetGameColliders())
+                Collider[] colliders = GetGameColliders();
+
+                foreach (Collider currentCollider in colliders)
                 {
-                    currentCollider.CheckCollision(collider);
+                    foreach (Collider collider in colliders)
+                    {
+                        currentCollider.CheckCollision(collider);
+                    }
                 }
+
+                Thread.Sleep(17);
             }
+
         }
     }
 }

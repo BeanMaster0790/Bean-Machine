@@ -37,7 +37,7 @@ namespace BeanMachine.PhysicsSystem
 
             foreach (Collider collider in Physics.Instance.GetGameColliders())
             {
-                if (collider.CheckCollision(tempSprite.GetAddon<Collider>()))
+                if (collider.CheckCollision(tempSprite.GetAddon<Collider>(), true))
                 {
                     result.Add(collider);
                 }

@@ -1,12 +1,10 @@
 ﻿using BeanMachine.Debug;
-using BeanMachine.Graphics;
 using BeanMachine.PhysicsSystem;
 using BeanMachine.Player;
 using BeanMachine.Scenes;
-using BeanMachine.Sounds;
+using BeanMachine.Testing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -20,8 +18,6 @@ namespace BeanMachine
 
         private SpriteBatch _spriteBatch;
 
-        private Sprite _sprite;
-
         public Engine()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -31,57 +27,54 @@ namespace BeanMachine
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            _spriteBatch.Begin();
-
-            Draw(_spriteBatch);
-            Physics.Instance.DrawColliders(_spriteBatch);
-
-            _spriteBatch.End();
-
             base.Draw(gameTime);
+
+            this.Draw(_spriteBatch);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            SceneManager.Instance.ActiveScene.Draw(spriteBatch);
+
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            Globals.GraphicsDevice = GraphicsDevice;
-            Globals.Content = Content;
+            this._graphics.PreferredBackBufferWidth = Globals.ScreenWidth;
+            this._graphics.PreferredBackBufferHeight = Globals.ScreenHeight;
+
+            this._graphics.IsFullScreen = Globals.IsFullscreen;
+
+            this.Window.IsBorderless = false;
+            
+            this._graphics.ApplyChanges();
 
 #if DEBUG
             StartEngineDebug();
 #endif
+
+            Thread thread = new Thread(Physics.Instance.Update);
+            thread.Start();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Globals.Content = Content;
+
+            Globals.GraphicsDevice = this.GraphicsDevice;
+
+            Globals.GraphicsDeviceManager = this._graphics;
+
+            this.Open();
             this.Load();
         }
+
         public virtual void Load()
         {
-            Scene tempScene = new Scene("Temp Scene");
 
-            SceneManager.Instance.AddNewScene(tempScene);
-
-            SceneManager.Instance.LoadScene(tempScene.Name);
-
-            SceneManager.Instance.SetActiveScene(tempScene.Name);
-
-            this._sprite = new Sprite(Content.Load<Texture2D>("Textures\\Debug\\Square"))
-            {
-                Position = new Vector2(100,100)
-            };
-
-            tempScene.AddToScene(this._sprite);
         }
 
         public virtual void Open()
@@ -112,6 +105,7 @@ namespace BeanMachine
             if (processes.Length == 0)
                 Process.Start(debugPath);
         }
+
         public virtual void Start()
         {
 
@@ -121,42 +115,16 @@ namespace BeanMachine
         {
             base.Update(gameTime);
 
-            Time.Instance.Update(gameTime);
-
             this.Update();
 
-            Physics.Instance.Update();
+            Time.Instance.Update(gameTime);
 
             InputManager.Instance.Update();
         }
 
         public virtual void Update()
         {
-            SceneManager.Instance.ActiveScene.Update();
-
-
-            DebugManager.Instance.Monitor(Time.Instance.Fps, "FPS");
-            DebugManager.Instance.Monitor(this._sprite.Position, "Pos");
-
-            if(InputManager.Instance.IsKeyHeld(Keys.W))
-            {
-                this._sprite.Position.Y -= 1;
-            }
-            if (InputManager.Instance.IsKeyHeld(Keys.S))
-            {
-                this._sprite.Position.Y += 1;
-            }
-            if (InputManager.Instance.IsKeyHeld(Keys.A))
-            {
-                this._sprite.Position.X -= 1;
-            }
-            if (InputManager.Instance.IsKeyHeld(Keys.D))
-            {
-                this._sprite.Position.X += 1;
-            }
         }
-
-
 
     }
 }
