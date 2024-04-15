@@ -35,19 +35,14 @@ namespace BeanMachine.PhysicsSystem
 
         public void Update()
         {
-            while (true)
+            Collider[] colliders = GetGameColliders();
+
+            foreach (Collider currentCollider in colliders)
             {
-                Collider[] colliders = GetGameColliders();
-
-                foreach (Collider currentCollider in colliders)
+                foreach (Collider collider in colliders)
                 {
-                    foreach (Collider collider in colliders)
-                    {
-                        currentCollider.CheckCollision(collider);
-                    }
+                    currentCollider.CheckCollision(collider);
                 }
-
-                Thread.Sleep(17);
             }
 
         }

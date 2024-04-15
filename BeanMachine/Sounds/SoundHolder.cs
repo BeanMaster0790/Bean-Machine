@@ -64,7 +64,7 @@ namespace BeanMachine.Sounds
 
         public override void Destroy()
         {
-            foreach (KeyValuePair<string,Sound> sound in this._sounds)
+            foreach (KeyValuePair<string, Sound> sound in this._sounds)
             {
                 Parent.Scene.SoundManager.DestroySound(sound.Value.SoundKey);
             }

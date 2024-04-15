@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using BeanMachine.Scenes;
+using BeanMachine.Debug;
 
 namespace BeanMachine.Graphics
 {
@@ -8,7 +9,7 @@ namespace BeanMachine.Graphics
     {
         public string Name { get; set; }
 
-        private bool _started;
+        protected bool _started;
 
         public Scene Scene { get; set; }
 
@@ -35,14 +36,14 @@ namespace BeanMachine.Graphics
         {
             if (this.Scene == null)
                 throw new InvalidOperationException("Cannot add component without using 'Scene.AddComponent'");
-            
+
             this._started = true;
         }
 
-        public virtual void Update() 
+        public virtual void Update()
         {
-            if(!this._started)
-                this.Start();        
+            if (!this._started)
+                this.Start();
         }
 
     }

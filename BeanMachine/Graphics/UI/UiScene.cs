@@ -1,37 +1,44 @@
-﻿using BeanMachine.Graphics;
-using BeanMachine.Sounds;
+﻿using BeanMachine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BeanMachine.Scenes
+namespace BeanMachine.Graphics.UI
 {
-    public class Scene
+    public class UiScene
     {
-        public Camera Camera;
-
-        public bool _loaded { get; private set; }
+        public bool Show;
 
         public string Name { get; set; }
 
-        private List<Component> _sceneComponents;
+        private List<UiComponent> _sceneComponents;
 
-        public SoundManager SoundManager { get; private set; }
+        public int SceneWidth;
+        public int SceneHeight;
 
-
-        public Scene(string name)
+        public UiScene(string name, int width, int height)
         {
-            this._sceneComponents = new List<Component>();
+            this._sceneComponents = new List<UiComponent>();
 
             this.Name = name;
 
-            this.Camera = new Camera(GraphicsManager.Instance.GraphicsDevice);
+            this.SceneWidth = width;
+            this.SceneHeight = height;
 
-            this.SoundManager = new SoundManager();
+            Vector2 screenBounds = GraphicsManager.Instance.GetScreenSize();
+
+            if (screenBounds.Y < this.SceneHeight)
+                this.SceneHeight = (int)screenBounds.Y;
+
+            if (screenBounds.X < this.SceneWidth)
+                this.SceneWidth = (int)screenBounds.X;
         }
 
-        public virtual void AddToScene(Component component)
+        public virtual void AddToScene(UiComponent component)
         {
             component.Scene = this;
             this._sceneComponents.Add(component);
@@ -39,14 +46,17 @@ namespace BeanMachine.Scenes
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            this.Camera.Draw(spriteBatch, this._sceneComponents);
+            foreach (UiComponent component in this._sceneComponents)
+            {
+                component.Draw(spriteBatch);
+            }
         }
 
         public T GetComponentWith<T>(string tag = null, string name = null)
         {
             if (tag != null && name == null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Tag != tag)
                         continue;
@@ -58,7 +68,7 @@ namespace BeanMachine.Scenes
 
             else if (name != null && tag == null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Name != name)
                         continue;
@@ -70,7 +80,7 @@ namespace BeanMachine.Scenes
 
             else if (name != null && tag != null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Name != name || component.Tag != tag)
                         continue;
@@ -92,7 +102,7 @@ namespace BeanMachine.Scenes
 
             if (tag != null && name == null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Tag != tag)
                         continue;
@@ -103,7 +113,7 @@ namespace BeanMachine.Scenes
 
             else if (name != null && tag == null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Name != name)
                         continue;
@@ -114,7 +124,7 @@ namespace BeanMachine.Scenes
 
             else if (name != null && tag != null)
             {
-                foreach (Component component in this._sceneComponents.ToArray())
+                foreach (UiComponent component in this._sceneComponents.ToArray())
                 {
                     if (component.Name != name || component.Tag != tag)
                         continue;
@@ -129,15 +139,11 @@ namespace BeanMachine.Scenes
             return components.ToArray();
         }
 
-        public virtual void LoadScene(object caller = null)
+        public float GetScaleToScreenSize()
         {
-            if (caller.GetType() != typeof(SceneManager) || caller == null)
-                throw new Exception("'LoadScene()' should only be called by the scene manager!");
+            float scale = GraphicsManager.Instance.GetScreenSize().X / (float)this.SceneWidth;
 
-            if (this._loaded)
-                return;
-
-            this._loaded = true;
+            return scale;
         }
 
         public virtual void LateUpdate()
@@ -148,29 +154,18 @@ namespace BeanMachine.Scenes
             }
         }
 
-        public virtual void UnloadScene(object caller = null)
+        public virtual void UnloadScene()
         {
-            if (caller.GetType() != typeof(SceneManager) || caller == null)
-                throw new Exception("'UnloadScene()' should only be called by the scene manager!");
-
-            if (this._loaded == false)
-                return;
-
             foreach (Component component in this._sceneComponents)
             {
                 component.Destroy();
             }
-
-            this.SoundManager.Destroy();
-
-            this._loaded = false;
         }
 
         public virtual void Update()
         {
-            this.SoundManager.AudioListener.Position = new Vector3(this.Camera.Position, 0);
 
-            foreach (Component component in this._sceneComponents.ToArray())
+            foreach (UiComponent component in this._sceneComponents.ToArray())
             {
                 if (component.ToRemove)
                 {

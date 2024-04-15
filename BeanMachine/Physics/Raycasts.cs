@@ -12,7 +12,7 @@ namespace BeanMachine.PhysicsSystem
 
         public Collider OverlapBox(Vector2 position, int size)
         {
-            Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size) {Name = "TempCollider" };
+            Sprite tempSprite = new Sprite(rectWidth: size, rectHeight: size) { Name = "TempCollider" };
             tempSprite.AddAddon(new Collider(isRaycast: true) { Height = size, Width = size });
             tempSprite.Position = position;
 
@@ -48,19 +48,19 @@ namespace BeanMachine.PhysicsSystem
 
         public Collider ShootRay(Vector2 position, Vector2 direction, int range)
         {
-            
+
             Vector2 currentPosition = position;
 
-            for(int i = 0; i < range; i++)
+            for (int i = 0; i < range; i++)
             {
-                Collider collider =  Raycasts.Instance.OverlapBox(currentPosition, 1);
+                Collider collider = Raycasts.Instance.OverlapBox(currentPosition, 1);
 
-                if(collider != null)
+                if (collider != null)
                 {
                     return collider;
                 }
 
-                currentPosition += direction; 
+                currentPosition += direction;
             }
 
             return null;

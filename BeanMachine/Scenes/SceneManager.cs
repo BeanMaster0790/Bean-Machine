@@ -9,7 +9,7 @@ namespace BeanMachine.Scenes
 
         public Scene ActiveScene { get; private set; }
 
-        private Dictionary<string,Scene> _scenes = new Dictionary<string, Scene>();
+        private Dictionary<string, Scene> _scenes = new Dictionary<string, Scene>();
 
         public void AddNewScene(Scene scene)
         {
@@ -26,7 +26,7 @@ namespace BeanMachine.Scenes
         }
 
         public void RemoveScene(string sceneName)
-        { 
+        {
             DoesSceneExist(sceneName);
 
             _scenes.Remove(sceneName);
@@ -55,13 +55,13 @@ namespace BeanMachine.Scenes
 
         public void DoesSceneExist(string sceneName, bool flip = false)
         {
-            if(this._scenes.TryGetValue(sceneName, out Scene scene))
+            if (this._scenes.TryGetValue(sceneName, out Scene scene))
             {
-                if(scene == null && !flip)
+                if (scene == null && !flip)
                 {
                     throw new NullReferenceException($"'{sceneName}' Does not excit! You may need to add your scene using 'AddNewScene()'.");
                 }
-                else if(scene != null && flip)
+                else if (scene != null && flip)
                 {
                     throw new Exception($"'{sceneName}' Already exists!");
                 }

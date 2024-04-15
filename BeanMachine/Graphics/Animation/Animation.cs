@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using BeanMachine.Graphics.Animation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace BeanMachine.Graphics.Animations
 {
@@ -7,38 +10,45 @@ namespace BeanMachine.Graphics.Animations
 
         public string AnimationName;
 
-        public int AnimationRow { get; set; }
-
         public int CurrentFrame { get; set; }
 
-        public int FrameCount { get; set; }
-
-        public int FrameHeight { get; set; }
-
-        public int FrameWidth { get; set; }
+        public int FrameCount { get { return Frames.Count; } }
 
         public float FrameSpeed { get; set; }
 
+        public List<Frame> Frames { get; set; }
+
         public bool IsLooping { get; set; }
 
-        public Texture2D Texture { get; set; }
 
-
-        public Animation(Texture2D texture, string animationName, int frameCount, int frameWidth, int frameHeight, int row)
+        public Animation(string animationName)
         {
-            this.Texture = texture;
+            this.Frames = new List<Frame>();
 
             this.AnimationName = animationName;
-
-            this.FrameCount = frameCount;
-            this.FrameWidth = frameWidth;
-            this.FrameHeight = frameHeight;
-
-            this.AnimationRow = row;
 
             this.IsLooping = true;
 
             this.FrameSpeed = 0.2f;
         }
+
+        public Rectangle GetTextureRectangle()
+        {
+            Rectangle rect = new Rectangle(this.Frames[this.CurrentFrame].frame.x, this.Frames[this.CurrentFrame].frame.y, this.Frames[this.CurrentFrame].frame.w, this.Frames[this.CurrentFrame].frame.h);
+            return rect;
+        }
+
+        public Vector2 GetCenterOrigin()
+        {
+            Vector2 pos = new Vector2(this.Frames[this.CurrentFrame].frame.w / 2, this.Frames[this.CurrentFrame].frame.h / 2);
+            return pos;
+        }
+
+        public Vector2 GetFrameDimentions()
+        {
+            Vector2 dim = new Vector2(this.Frames[this.CurrentFrame].frame.w, this.Frames[this.CurrentFrame].frame.h);
+            return dim;
+        }
+
     }
 }
