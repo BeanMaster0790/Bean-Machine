@@ -45,7 +45,7 @@ namespace BeanMachine.Sounds
 
         public void Destroy()
         {
-            foreach(int key in this._soundEffects.Keys)
+            foreach (int key in this._soundEffects.Keys)
             {
                 this.DestroySound(key);
             }

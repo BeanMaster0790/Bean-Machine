@@ -16,6 +16,17 @@
             return _seededRandom.Next(min, max);
         }
 
+        public static float RandomFloat(int min, int max)
+        {
+            float inter = RandomInt(min, max);
+
+            System.Random random = new System.Random();
+
+            float floa = random.NextSingle();
+
+            return inter + floa;
+        }
+
         public static void SetSeededRandom(int seed)
         {
             _seededRandom = new System.Random(seed);

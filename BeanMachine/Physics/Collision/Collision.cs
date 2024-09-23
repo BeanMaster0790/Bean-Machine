@@ -1,4 +1,6 @@
-﻿namespace BeanMachine.PhysicsSystem
+﻿using Microsoft.Xna.Framework;
+
+namespace BeanMachine.PhysicsSystem
 {
     public class Collision
     {
@@ -6,22 +8,14 @@
 
         public Collider Collider { get; set; }
 
-        public CollisionDirection[] Directions { get; set; }
+        public Vector2 Direction { get; set; }
 
-        public Collision(Collider baseCollider, Collider collider, CollisionDirection[] directions)
+        public Collision(Collider baseCollider, Collider collider, Vector2 direction)
         {
             this.BaseCollider = baseCollider;
             this.Collider = collider;
-            this.Directions = directions;
-        }
-    }
 
-    public enum CollisionDirection
-    {
-        Top,
-        Bottom,
-        Left,
-        Right,
-        None
+            this.Direction = direction;
+        }
     }
 }

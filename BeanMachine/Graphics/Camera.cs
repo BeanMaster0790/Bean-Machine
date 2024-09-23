@@ -1,79 +1,172 @@
-﻿using BeanMachine.Graphics;
+﻿using BeanMachine.Debug;
 using BeanMachine.PhysicsSystem;
-using BeanMachine.Scenes;
+using BeanMachine.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeanMachine.Graphics
 {
     public class Camera
     {
-        private float _scale;
-
-        private GraphicsDeviceManager _graphics;
-
-        public GraphicsDevice GraphicsDevice;
-
-        private Scene _scene;
-        
-        private Matrix _transformMatrix;
-
         public Vector2 Position;
+        private float _z;
+        private float _baseZ;
 
-        private RenderTarget2D _target;
+        private float _aspectRatio;
+        private float _fov;
 
-        public Camera(GraphicsDeviceManager graphicsDeviceManager, GraphicsDevice graphicsDevice, Scene scene)
+        private Matrix _viewMatrix;
+        private Matrix _projectionMatrix;
+
+        private BasicEffect _effect;
+
+        private GraphicsDevice _graphicsDevice;
+
+        public Camera(GraphicsDevice graphicsDevice)
         {
-            this._graphics = graphicsDeviceManager;
 
-            this.GraphicsDevice = graphicsDevice;
+            this.Position = new Vector2(0, 0);
 
-            this._scene = scene;
+            this.UpdateAspectRatio(this, EventArgs.Empty);
 
-            this.Position = Vector2.Zero;
+            this._fov = MathHelper.PiOver2;
 
-            this._target = new RenderTarget2D(graphicsDevice, Globals.VirtualWidth, Globals.VirtualHeight);
+            this._baseZ = GetZFromHeight(GraphicsManager.Instance.GetScreenSize().Y);
+            this._z = this._baseZ;
+
+            this._graphicsDevice = graphicsDevice;
+
+            this._effect = new BasicEffect(graphicsDevice);
+            this._effect.FogEnabled = false;
+            this._effect.TextureEnabled = true;
+            this._effect.LightingEnabled = false;
+            this._effect.PreferPerPixelLighting = false;
+            this._effect.VertexColorEnabled = true;
+            this._effect.Texture = null;
+            this._effect.Projection = Matrix.Identity;
+            this._effect.View = Matrix.Identity;
+            this._effect.World = Matrix.Identity;
+
+            this.UpdateMatix(this, EventArgs.Empty);
+
+            GraphicsManager.Instance.GraphicsChanged += this.UpdateAspectRatio;
+            GraphicsManager.Instance.GraphicsChanged += this.UpdateMatix;
         }
+
+        public float GetZFromHeight(float height)
+        {
+            return -((height / 2) / MathF.Tan(this._fov / 2));
+        }
+
+        public float GetHeight()
+        {
+            return (this._z * -2) * MathF.Tan(this._fov / 2);
+        }
+
+        public float GetWidth()
+        {
+            return GetHeight() * this._aspectRatio;
+        }
+
+        public float GetTop()
+        {
+            return this.Position.Y - GetHeight() / 2;
+        }
+
+        public float GetBottom() 
+        {
+			return this.Position.Y + GetHeight() / 2;
+		}
+
+        public float GetLeft()
+        {
+            return this.Position.X - GetWidth() / 2;
+        }
+
+        public float GetRight()
+        {
+            return this.Position.X + GetWidth() / 2;
+        }
+
+        public void UpdateMatix(object sender, EventArgs e)
+        {
+            this._viewMatrix = Matrix.CreateLookAt(new Vector3(0, 0, this._z), Vector3.Zero, Vector3.Down);
+            this._projectionMatrix = Matrix.CreatePerspectiveFieldOfView(this._fov, this._aspectRatio, 1, 8192);
+        }
+
+        public void UpdateAspectRatio(object sender, EventArgs e)
+        {
+            this._aspectRatio = GraphicsManager.Instance.GetScreenAspectRatio();
+        }
+
+        public void MoveZ(float amount)
+        {
+            this._z += amount;
+        }
+
+        public void SetZ(float z)
+        {
+            this._z = z;
+            UpdateMatix(this, EventArgs.Empty);
+        }
+
 
         public void Draw(SpriteBatch spriteBatch, List<Component> components)
         {
 
-            this._transformMatrix = Matrix.CreateTranslation(new Vector3(Position, 0));
+            this._effect.View = this._viewMatrix;
+            this._effect.Projection = this._projectionMatrix;
 
-            this._transformMatrix =  Matrix.Invert(this._transformMatrix);
+            this._graphicsDevice.Clear(Color.Black);
 
-            this._scale = 1f / (Globals.VirtualHeight / this._graphics.GraphicsDevice.Viewport.Height);
-
-            this.GraphicsDevice.SetRenderTarget(this._target);
-
-            this.GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin(transformMatrix:  this._transformMatrix);
+            spriteBatch.Begin(samplerState: SamplerState.PointClamp, rasterizerState: RasterizerState.CullNone, effect: this._effect, sortMode: SpriteSortMode.FrontToBack);
 
             foreach (Component component in components)
             {
-                component.Draw(spriteBatch);
+                if(component.IsVisable)
+                    component.Draw(spriteBatch);
             }
 
-            spriteBatch.End();
-
-            this.GraphicsDevice.SetRenderTarget(null);
-
-            spriteBatch.Begin();
-
-            spriteBatch.Draw(_target, Vector2.Zero, null, Color.White, 0, Vector2.Zero, _scale, SpriteEffects.None, 0);
+            DebugManager.Instance.Draw(spriteBatch);
 
             spriteBatch.End();
         }
 
-        public Vector2 ScreenToGame(Vector2 position)
+        public Vector2 ScreenToWorld(Vector2 position)
         {
-            return Vector2.Transform(position / _scale, Matrix.Invert(this._transformMatrix));
+            Vector2 screenSize = GraphicsManager.Instance.GetScreenSize();
+
+            Viewport screenViewport = new Viewport(0, 0, (int)screenSize.X, (int)screenSize.Y);
+
+            Ray ray = CreateMouseRay(position, screenViewport);
+
+            Plane worldPlane = new Plane(new Vector3(0, 0, 1), 0f);
+
+            float? dist = ray.Intersects(worldPlane);
+            Vector3 interceptPoint = ray.Position + ray.Direction * dist.Value;
+
+            Vector2 result = new Vector2(interceptPoint.X, interceptPoint.Y) + this.Position;
+
+            return result;
+        }
+
+        private Ray CreateMouseRay(Vector2 position, Viewport viewport)
+        {
+            Vector3 nearPoint = new Vector3(position, 0);
+            Vector3 farPoint = new Vector3(position, 1);
+
+            nearPoint = viewport.Unproject(nearPoint, this._projectionMatrix, this._viewMatrix, Matrix.Identity);
+            farPoint = viewport.Unproject(farPoint, this._projectionMatrix, this._viewMatrix, Matrix.Identity);
+
+            Vector3 direction = farPoint - nearPoint;
+            direction.Normalize();
+
+            Ray ray = new Ray(nearPoint, direction);
+
+            return ray;
         }
     }
 }

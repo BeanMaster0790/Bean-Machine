@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using BeanMachine.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -10,6 +12,8 @@ namespace BeanMachine.PhysicsSystem
 
         public static Physics Instance = new Physics();
 
+        private Texture2D _texture;
+
         public void AddGameCollider(Collider collider)
         {
             _gameColliders.Add(collider);
@@ -17,10 +21,19 @@ namespace BeanMachine.PhysicsSystem
 
         public void DrawColliders(SpriteBatch spriteBatch)
         {
-            foreach (Collider collider in GetGameColliders())
+            if(this._texture == null)
             {
-                collider.DrawCollider(spriteBatch);
+                this._texture = new Texture2D(GraphicsManager.Instance.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+			    this._texture.SetData(new [] { Color.White });
             }
+
+
+			foreach (Collider collider in GetGameColliders())
+            {
+                collider.DrawCollider(spriteBatch, this._texture);
+            }
+
         }
 
         public Collider[] GetGameColliders()
@@ -35,19 +48,15 @@ namespace BeanMachine.PhysicsSystem
 
         public void Update()
         {
-            while (true)
+            Collider[] colliders = GetGameColliders();
+
+            foreach (Collider currentCollider in colliders)
             {
-                Collider[] colliders = GetGameColliders();
-
-                foreach (Collider currentCollider in colliders)
+                foreach (Collider collider in colliders)
                 {
-                    foreach (Collider collider in colliders)
-                    {
+                    if(collider.IsActive && currentCollider.IsActive)
                         currentCollider.CheckCollision(collider);
-                    }
                 }
-
-                Thread.Sleep(17);
             }
 
         }

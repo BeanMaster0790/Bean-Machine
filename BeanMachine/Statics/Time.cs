@@ -8,6 +8,7 @@ namespace BeanMachine
         public float DeltaTime { get; private set; }
 
         public int Fps = 0;
+        public int FrameTime = 0;
 
         public static Time Instance = new Time();
 
@@ -29,16 +30,13 @@ namespace BeanMachine
 
             long difference = this._milsSinceStart - _lastMilsSinceStart;
 
+            this.FrameTime = (int)difference;
 
-            if(difference > 0)
+            if (difference > 0)
             {
                 float fps = 1000 / difference;
                 this.Fps = (int)fps;
             }
-
-            DebugManager.Instance.Monitor(difference, "Frame Time");
-            DebugManager.Instance.Monitor(Fps, "FPS");
-
         }
     }
 }

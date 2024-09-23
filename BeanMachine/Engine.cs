@@ -2,13 +2,14 @@
 using BeanMachine.PhysicsSystem;
 using BeanMachine.Player;
 using BeanMachine.Scenes;
-using BeanMachine.Testing;
+using BeanMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using BeanMachine.Graphics;
 
 namespace BeanMachine
 {
@@ -40,22 +41,11 @@ namespace BeanMachine
         protected override void Initialize()
         {
             base.Initialize();
-
-            this._graphics.PreferredBackBufferWidth = Globals.ScreenWidth;
-            this._graphics.PreferredBackBufferHeight = Globals.ScreenHeight;
-
-            this._graphics.IsFullScreen = Globals.IsFullscreen;
-
-            this.Window.IsBorderless = false;
-            
-            this._graphics.ApplyChanges();
+    
 
 #if DEBUG
             StartEngineDebug();
 #endif
-
-            Thread thread = new Thread(Physics.Instance.Update);
-            thread.Start();
         }
 
         protected override void LoadContent()
@@ -64,15 +54,20 @@ namespace BeanMachine
 
             Globals.Content = Content;
 
-            Globals.GraphicsDevice = this.GraphicsDevice;
+            GraphicsManager.Instance.StartGame(this.GraphicsDevice, this._graphics);
+            GraphicsManager.Instance.ApplyChanges();
 
-            Globals.GraphicsDeviceManager = this._graphics;
 
             this.Open();
             this.Load();
         }
 
         public virtual void Load()
+        {
+
+        }
+
+        public virtual void LateUpdate()
         {
 
         }
@@ -91,19 +86,21 @@ namespace BeanMachine
 
         private static void StartEngineDebug()
         {
-            Thread debugInformationThread = new Thread(DebugManager.Instance.SendDataToDebugConsole);
-            debugInformationThread.Start();
+            DebugManager.Instance.Start();
 
-            string debugPath = Environment.CurrentDirectory;
+            //Thread debugInformationThread = new Thread(DebugManagerLegacy.Instance.SendDataToDebugConsole);
+            //debugInformationThread.Start();
 
-            debugPath = Directory.GetParent(debugPath).Parent.Parent.FullName;
+            //string debugPath = Environment.CurrentDirectory;
 
-            debugPath += "\\DebugConsole\\DebugConsole.exe";
+            //debugPath = Directory.GetParent(debugPath).Parent.Parent.FullName;
 
-            Process[] processes = Process.GetProcessesByName("DebugConsole");
+            //debugPath += "/DebugConsole/DebugConsole.exe";
 
-            if (processes.Length == 0)
-                Process.Start(debugPath);
+            //Process[] processes = Process.GetProcessesByName("DebugConsole");
+
+            //if (processes.Length == 0)
+            //    Process.Start(debugPath);
         }
 
         public virtual void Start()
@@ -117,9 +114,13 @@ namespace BeanMachine
 
             this.Update();
 
+            Physics.Instance.Update();
+
             Time.Instance.Update(gameTime);
 
             InputManager.Instance.Update();
+
+            this.LateUpdate();
         }
 
         public virtual void Update()

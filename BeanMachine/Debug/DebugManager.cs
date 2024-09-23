@@ -1,138 +1,136 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using BeanMachine.Player;
+using Microsoft.Xna.Framework.Input;
+using BeanMachine.PhysicsSystem;
+using BeanMachine.Graphics;
+using BeanMachine.Scenes;
 
 namespace BeanMachine.Debug
 {
-    public class DebugManager
-    {
+	public class DebugManager
+	{
+		public static DebugManager Instance = new DebugManager();
+		
+		private List<IDebuggable> _debuggables = new List<IDebuggable>();
 
-        public static DebugManager Instance = new DebugManager();
+		private SpriteFont _font;
 
-        private List<object> _logs = new List<object>();
+		private bool ShowDebugInfo = false;
+		private bool ShowColliders = false;
+		private bool ShowLines = false;
 
-        private List<string> _logsTime = new List<string>();
+		private Texture2D _pixel;
 
-        private Dictionary<string, object> _trackedObjects = new Dictionary<string, object>();
+		private List<Line> _linesToDraw = new List<Line>();
 
-        public void Log(object obj)
-        {
-            this._logs.Add(obj);
-            this._logsTime.Add(string.Format("{0} : {1} : {2}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second));
-        }
+		public void Start()
+		{
+			this._font = Globals.Content.Load<SpriteFont>("Fonts/DebugFont");
+		}
 
-        public void Monitor(object obj, string name)
-        {
-            foreach (KeyValuePair<string, object> i in this._trackedObjects)
-            {
-                if (i.Key == name)
-                {
-                    this._trackedObjects.Remove(i.Key);
-                }
-            }
+		public void AddDebugabble(IDebuggable debuggable)
+		{
+			this._debuggables.Add(debuggable);
+		}
 
-            this._trackedObjects.Add(name, obj);
-        }
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			if(this._pixel == null)
+			{
+				this._pixel = new Texture2D(GraphicsManager.Instance.GraphicsDevice, 1, 1);
+				this._pixel.SetData(new Color[] {Color.White});
+			}
 
-        private string ParseDebugInfoToJson()
-        {
-            DebugFile file = new DebugFile();
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.D))
+				this.ShowDebugInfo = !this.ShowDebugInfo;
 
-            file.LoggedValues = new List<string>();
-            file.LoggedValuesTimes = new List<string>();
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.C))
+				this.ShowColliders = !this.ShowColliders;
 
-            file.MonitoredValues = new List<string>();
-            file.MonitoredValuesNames = new List<string>();
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.L))
+				this.ShowLines = !this.ShowLines;
 
-            foreach (KeyValuePair<string, object> pair in this._trackedObjects)
-            {
-                file.MonitoredValues.Add(pair.Value.ToString());
-                file.MonitoredValuesNames.Add(pair.Key.ToString());
-            }
+			if (this.ShowDebugInfo)
+				DrawDebugInfo(spriteBatch);
 
-            if (this._logs.Count > 1000)
-            {
-                this._logs.RemoveAt(0);
-                this._logsTime.RemoveAt(0);
-            }
+			if(this.ShowColliders)
+				Physics.Instance.DrawColliders(spriteBatch);
 
-            foreach (object obj in this._logs.ToArray())
-            {
+			if(this.ShowLines)
+				DrawLines(spriteBatch);
 
-                file.LoggedValues.Add(obj.ToString());
-                this._logs.Remove(obj);
-            }
+		}
 
-            foreach (string obj in this._logsTime.ToArray())
-            {
-                file.LoggedValuesTimes.Add(obj.ToString());
-                this._logsTime.Remove(obj);
-            }
+		private void DrawLines(SpriteBatch spriteBatch)
+		{
+			foreach (Line line in this._linesToDraw.ToArray())
+			{
+				Vector2 lineScale = new Vector2(line.Length, line.Thickness);
 
-            Console.WriteLine(JsonConvert.SerializeObject(file));
-            return JsonConvert.SerializeObject(file);
-        }
+				spriteBatch.Draw(this._pixel, line.StartPoint - SceneManager.Instance.ActiveScene.Camera.Position, null, line.Colour, MathHelper.ToRadians(line.Angle), new Vector2(0, line.Thickness / 2), lineScale, SpriteEffects.None, 0.91f);
 
-        public void SendDataToDebugConsole()
-        {
-            try
-            {
-                IPAddress ipaddress = IPAddress.Parse("127.0.0.1");
+				this._linesToDraw.Remove(line);
+			}
+		}
 
-                TcpListener mylist = new TcpListener(ipaddress, 8000);
-                mylist.Start();
+		public void DrawLine(Line line)
+		{
+			if(this.ShowLines)
+				this._linesToDraw.Add(line);
+		}
 
-                Socket socket = mylist.AcceptSocket();
+		public void DrawLine(Line line, Color colour, int thickness)
+		{
+			line.Colour = colour;
+			line.Thickness = thickness;
 
-                while (true)
-                {
-                    try
-                    {
-                        byte[] bytes = new byte[100000];
-                        int k = socket.Receive(bytes);
+			this.DrawLine(line);
+		}
 
-                        string request = "";
-                        string responce = "";
+		public void DrawLine(Vector2 origin, Vector2 direction ,float length, Color colour, int thickness)
+		{
+			Vector2 endPoint = origin + direction * length;
 
-                        for (int i = 0; i < k; i++)
-                        {
-                            request += Convert.ToChar(bytes[i]);
-                        }
+			Line line = new Line(origin, endPoint, colour, thickness);
 
-                        Console.WriteLine(request);
+			this.DrawLine(line);
+		}
 
-                        if (request == "DebugInfo")
-                        {
-                            responce = ParseDebugInfoToJson();
-                        }
+		public void DrawLine(Vector2 origin, float direction, float length, Color colour, int thickness)
+		{
+			Vector2 vectorDirection = new Vector2(MathF.Cos(direction), MathF.Sin(direction));
 
-                        if (request == string.Empty)
-                        {
-                            throw new Exception("No Request");
-                        }
+			this.DrawLine(origin, vectorDirection, length, colour, thickness);	
+		}
 
-                        ASCIIEncoding asencd = new ASCIIEncoding();
-                        socket.Send(asencd.GetBytes(responce));
+		private void DrawDebugInfo(SpriteBatch spriteBatch)
+		{
+			foreach (IDebuggable debugItem in this._debuggables)
+			{
+				if (!debugItem.ShowDebugInfo)
+					continue;
 
-                    }
-                    catch (Exception)
-                    {
-                        mylist.Stop();
-                        socket.Close();
+				Vector2 lastPosition = debugItem.GetDebugDrawPosition();
 
-                        SendDataToDebugConsole();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error.." + ex.StackTrace);
-            }
+				foreach (string debugValue in debugItem.DebugValueNames)
+				{
+					string displayedText = "Error";
 
-        }
 
-    }
+					displayedText = debugValue + ": " + debugItem.GetType().GetField(debugValue).GetValue(debugItem);
+
+					Vector2 drawPosition = new Vector2(lastPosition.X, lastPosition.Y);
+					lastPosition = new Vector2(drawPosition.X, drawPosition.Y + this._font.MeasureString(displayedText).Y);
+
+					spriteBatch.DrawString(this._font, displayedText, drawPosition - SceneManager.Instance.ActiveScene.Camera.Position, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+				}
+			}
+		}
+	}
 }

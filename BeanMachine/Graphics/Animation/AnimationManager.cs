@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using BeanMachine.Graphics.Animation;
+using System.IO;
 
 namespace BeanMachine.Graphics.Animations
 {
@@ -17,37 +20,89 @@ namespace BeanMachine.Graphics.Animations
 
         private float _timer;
 
-        public AnimationManager(Sprite parent, Dictionary<string, Animation> animations)
-        {   
-            this.Animations = animations;
+        private string _animationsDirectory;
+
+        private Texture2D _texture;
+
+        public AnimationManager(Texture2D SheetTexture, string dataDirectory) : base()
+        {
+            this._texture = SheetTexture;
+
+            this._animationsDirectory = Directory.GetCurrentDirectory() + "/Content/" + dataDirectory;
+
+            LoadAnimations();
 
             this._isPlaying = false;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        private void LoadAnimations()
         {
-            if(this.CurrentAnimation.AnimationRow == 0)
+            this.Animations = new Dictionary<string, Animation>();
+
+            string data = File.OpenText(this._animationsDirectory).ReadToEnd();
+
+            ImageFrames imageFrames = JsonConvert.DeserializeObject<ImageFrames>(data);
+
+            List<string> frameTags = new List<string>();
+
+            foreach (FrameTag tag in imageFrames.meta.frameTags)
             {
-                spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position,
-                new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, 0, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
-                Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, 1, base.Parent.Flipped, 0);
+                frameTags.Add(tag.name);
+
+                Animation animation = new Animation(tag.name);
+
+                this.Animations.Add(tag.name, animation);
             }
-            else
+
+            foreach (Frame frame in imageFrames.frames)
             {
-                spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position,
-                new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, this.CurrentAnimation.AnimationRow * this.CurrentAnimation.FrameHeight, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
-                Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, 1, base.Parent.Flipped, 0);
+                string frameName = frame.filename.Split('#')[1];
+                frameName = frameName.Split('.')[0];
+
+                if (frameName.Contains(" "))
+                    frameName = frameName.Split(" ")[0];
+
+                this.Animations[frameName].Frames.Add(frame);
             }
         }
 
-        public void Play(Animation animation)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if (this.CurrentAnimation == animation)
+            //if (this.CurrentAnimation.Frames == 0)
+            //{
+            //    spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position - base.Parent.Scene.Camera.Position,
+            //    new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, 0, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
+            //    Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, base.Parent.Scale, SpriteEffects.FlipVertically, 0);
+            //}
+            //else
+            //{
+            //    spriteBatch.Draw(this.CurrentAnimation.Texture, base.Parent.Position - base.Parent.Scene.Camera.Position,
+            //    new Rectangle(this.CurrentAnimation.CurrentFrame * this.CurrentAnimation.FrameWidth, this.CurrentAnimation.AnimationRow * this.CurrentAnimation.FrameHeight, this.CurrentAnimation.FrameWidth, this.CurrentAnimation.FrameHeight),
+            //    Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.Origin, base.Parent.Scale, SpriteEffects.FlipVertically, 0);
+            //}
+
+            if(this.CurrentAnimation != null && this._isPlaying)
+                spriteBatch.Draw(this._texture, base.Parent.Position - base.Parent.Scene.Camera.Position,
+                CurrentAnimation.GetTextureRectangle(),
+                Parent.Colour, MathHelper.ToRadians(base.Parent.Rotation), base.Parent.GetOrigin(), base.Parent.Scale, base.Parent.spriteEffect, base.Parent.layer);
+        }
+
+        public void Play(string animation)
+        {
+            if(animation == "None")
+            {
+                this.CurrentAnimation = null;
+                return;
+            }
+
+            Animation animationToPlay = this.Animations[animation];
+
+            if (this.CurrentAnimation == animationToPlay && this._isPlaying)
                 return;
 
             this._isPlaying = true;
 
-            this.CurrentAnimation = animation;
+            this.CurrentAnimation = animationToPlay;
             this.CurrentAnimation.CurrentFrame = 0;
 
             this._timer = 0;
@@ -67,19 +122,18 @@ namespace BeanMachine.Graphics.Animations
         {
             this._isPlaying = false;
 
-            this.CurrentAnimation.CurrentFrame = 0;
             this._timer = 0;
         }
 
         public override void Update()
         {
 
-            if(!this._isPlaying)
+            if (!this._isPlaying)
                 return;
 
             this._timer += Time.Instance.DeltaTime;
 
-            if(this._timer >= CurrentAnimation.FrameSpeed)
+            if (this._timer >= CurrentAnimation.FrameSpeed)
             {
                 this._timer = 0;
 
@@ -91,13 +145,14 @@ namespace BeanMachine.Graphics.Animations
 
                 FrameEvent?.Invoke(this, args);
 
-                if(this.CurrentAnimation.CurrentFrame >= this.CurrentAnimation.FrameCount && this.CurrentAnimation.IsLooping)
+                if (this.CurrentAnimation.CurrentFrame >= this.CurrentAnimation.FrameCount && this.CurrentAnimation.IsLooping)
                 {
                     this.CurrentAnimation.CurrentFrame = 0;
                 }
-                else if (this.CurrentAnimation.CurrentFrame > this.CurrentAnimation.FrameCount)
+                else if (this.CurrentAnimation.CurrentFrame >= this.CurrentAnimation.FrameCount)
                 {
-                    Stop();
+					this.CurrentAnimation.CurrentFrame = 0;
+					Stop();
                 }
             }
         }

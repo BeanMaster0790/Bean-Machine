@@ -15,17 +15,27 @@ namespace BeanMachine
 
         private bool _started;
 
-        public virtual void Destroy() { } 
+        public virtual void Destroy() { }
 
         public virtual void Start()
-        { 
+        {
             this._started = true;
         }
 
         public virtual void Update()
         {
-            if(!this._started)
+            if (!this._started)
                 this.Start();
+        }
+
+        public virtual void LateUpdate()
+        {
+
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+
         }
     }
 }
