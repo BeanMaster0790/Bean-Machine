@@ -1,4 +1,4 @@
-# BEAN MATCHINE
+# BEAN MACHINE
 
 This is a game making framework (built on monogame) i work on whenever I get the urge to make a small game. I think its pretty good for me to use as i know exactly how it works but the documentation is non existant due to the fact its a little hobby.
 
