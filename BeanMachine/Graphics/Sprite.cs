@@ -10,7 +10,7 @@ using BeanMachine.PhysicsSystem;
 
 namespace BeanMachine.Graphics
 {
-    public class Sprite : Component, IDebuggable
+    public class Sprite : Component
     {
         public List<Addon> Addons = new List<Addon>();
 
@@ -167,7 +167,7 @@ namespace BeanMachine.Graphics
         {
             base.Start();
 
-			DebugManager.Instance.AddDebugabble(this);
+			//DebugManager.Instance.AddDebugabble(this);
         }
 
         public void SetOrigin(Vector2 origin)

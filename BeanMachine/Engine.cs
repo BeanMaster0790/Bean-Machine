@@ -86,7 +86,7 @@ namespace BeanMachine
 
         private static void StartEngineDebug()
         {
-            DebugManager.Instance.Start();
+            //DebugManager.Instance.Start();
 
             //Thread debugInformationThread = new Thread(DebugManagerLegacy.Instance.SendDataToDebugConsole);
             //debugInformationThread.Start();

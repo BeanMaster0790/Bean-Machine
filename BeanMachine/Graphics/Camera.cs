@@ -130,7 +130,7 @@ namespace BeanMachine.Graphics
                     component.Draw(spriteBatch);
             }
 
-            DebugManager.Instance.Draw(spriteBatch);
+            //DebugManager.Instance.Draw(spriteBatch);
 
             spriteBatch.End();
         }

@@ -1,4 +1,5 @@
 ﻿using BeanMachine;
+using BeanMachine.Graphics;
 using BeanMachine.Scenes;
 using BeanMachine.Testing;
 using Microsoft.Xna.Framework;
@@ -19,6 +20,10 @@ namespace BeanGame
         public override void Load()
         {
             base.Load();
+
+            GraphicsManager.Instance.SetFullScreen(false);
+            GraphicsManager.Instance.SetScreenSize(1280, 720);
+            GraphicsManager.Instance.ApplyChanges();
 
             TestScene tempScene = new TestScene("Temp Scene");
 
