@@ -1,136 +1,136 @@
-﻿//using Microsoft.Xna.Framework.Graphics;
-//using Microsoft.Xna.Framework;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using BeanMachine.Player;
-//using Microsoft.Xna.Framework.Input;
-//using BeanMachine.PhysicsSystem;
-//using BeanMachine.Graphics;
-//using BeanMachine.Scenes;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BeanMachine.Player;
+using Microsoft.Xna.Framework.Input;
+using BeanMachine.PhysicsSystem;
+using BeanMachine.Graphics;
+using BeanMachine.Scenes;
 
-//namespace BeanMachine.Debug
-//{
-//	public class DebugManager
-//	{
-//		public static DebugManager Instance = new DebugManager();
+namespace BeanMachine.Debug
+{
+	public class DebugManager
+	{
+		public static DebugManager Instance = new DebugManager();
 		
-//		private List<IDebuggable> _debuggables = new List<IDebuggable>();
+		private List<IDebuggable> _debuggables = new List<IDebuggable>();
 
-//		private SpriteFont _font;
+		private SpriteFont _font;
 
-//		private bool ShowDebugInfo = false;
-//		private bool ShowColliders = false;
-//		private bool ShowLines = false;
+		private bool ShowDebugInfo = false;
+		private bool ShowColliders = false;
+		private bool ShowLines = false;
 
-//		private Texture2D _pixel;
+		private Texture2D _pixel;
 
-//		private List<Line> _linesToDraw = new List<Line>();
+		private List<Line> _linesToDraw = new List<Line>();
 
-//		public void Start()
-//		{
-//			this._font = Globals.Content.Load<SpriteFont>("Fonts/DebugFont");
-//		}
+		public void Start()
+		{
+			this._font = Globals.Content.Load<SpriteFont>("Fonts/DebugFont");
+		}
 
-//		public void AddDebugabble(IDebuggable debuggable)
-//		{
-//			this._debuggables.Add(debuggable);
-//		}
+		public void AddDebugabble(IDebuggable debuggable)
+		{
+			this._debuggables.Add(debuggable);
+		}
 
-//		public void Draw(SpriteBatch spriteBatch)
-//		{
-//			if(this._pixel == null)
-//			{
-//				this._pixel = new Texture2D(GraphicsManager.Instance.GraphicsDevice, 1, 1);
-//				this._pixel.SetData(new Color[] {Color.White});
-//			}
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			if(this._pixel == null)
+			{
+				this._pixel = new Texture2D(GraphicsManager.Instance.GraphicsDevice, 1, 1);
+				this._pixel.SetData(new Color[] {Color.White});
+			}
 
-//			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.D))
-//				this.ShowDebugInfo = !this.ShowDebugInfo;
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.D))
+				this.ShowDebugInfo = !this.ShowDebugInfo;
 
-//			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.C))
-//				this.ShowColliders = !this.ShowColliders;
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.C))
+				this.ShowColliders = !this.ShowColliders;
 
-//			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.L))
-//				this.ShowLines = !this.ShowLines;
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.L))
+				this.ShowLines = !this.ShowLines;
 
-//			if (this.ShowDebugInfo)
-//				DrawDebugInfo(spriteBatch);
+			if (this.ShowDebugInfo)
+				DrawDebugInfo(spriteBatch);
 
-//			if(this.ShowColliders)
-//				Physics.Instance.DrawColliders(spriteBatch);
+			if(this.ShowColliders)
+				Physics.Instance.DrawColliders(spriteBatch);
 
-//			if(this.ShowLines)
-//				DrawLines(spriteBatch);
+			if(this.ShowLines)
+				DrawLines(spriteBatch);
 
-//		}
+		}
 
-//		private void DrawLines(SpriteBatch spriteBatch)
-//		{
-//			foreach (Line line in this._linesToDraw.ToArray())
-//			{
-//				Vector2 lineScale = new Vector2(line.Length, line.Thickness);
+		private void DrawLines(SpriteBatch spriteBatch)
+		{
+			foreach (Line line in this._linesToDraw.ToArray())
+			{
+				Vector2 lineScale = new Vector2(line.Length, line.Thickness);
 
-//				spriteBatch.Draw(this._pixel, line.StartPoint - SceneManager.Instance.ActiveScene.Camera.Position, null, line.Colour, MathHelper.ToRadians(line.Angle), new Vector2(0, line.Thickness / 2), lineScale, SpriteEffects.None, 0.91f);
+				spriteBatch.Draw(this._pixel, line.StartPoint - SceneManager.Instance.ActiveScene.Camera.Position, null, line.Colour, MathHelper.ToRadians(line.Angle), new Vector2(0, line.Thickness / 2), lineScale, SpriteEffects.None, 0.91f);
 
-//				this._linesToDraw.Remove(line);
-//			}
-//		}
+				this._linesToDraw.Remove(line);
+			}
+		}
 
-//		public void DrawLine(Line line)
-//		{
-//			if(this.ShowLines)
-//				this._linesToDraw.Add(line);
-//		}
+		public void DrawLine(Line line)
+		{
+			if(this.ShowLines)
+				this._linesToDraw.Add(line);
+		}
 
-//		public void DrawLine(Line line, Color colour, int thickness)
-//		{
-//			line.Colour = colour;
-//			line.Thickness = thickness;
+		public void DrawLine(Line line, Color colour, int thickness)
+		{
+			line.Colour = colour;
+			line.Thickness = thickness;
 
-//			this.DrawLine(line);
-//		}
+			this.DrawLine(line);
+		}
 
-//		public void DrawLine(Vector2 origin, Vector2 direction ,float length, Color colour, int thickness)
-//		{
-//			Vector2 endPoint = origin + direction * length;
+		public void DrawLine(Vector2 origin, Vector2 direction ,float length, Color colour, int thickness)
+		{
+			Vector2 endPoint = origin + direction * length;
 
-//			Line line = new Line(origin, endPoint, colour, thickness);
+			Line line = new Line(origin, endPoint, colour, thickness);
 
-//			this.DrawLine(line);
-//		}
+			this.DrawLine(line);
+		}
 
-//		public void DrawLine(Vector2 origin, float direction, float length, Color colour, int thickness)
-//		{
-//			Vector2 vectorDirection = new Vector2(MathF.Cos(direction), MathF.Sin(direction));
+		public void DrawLine(Vector2 origin, float direction, float length, Color colour, int thickness)
+		{
+			Vector2 vectorDirection = new Vector2(MathF.Cos(direction), MathF.Sin(direction));
 
-//			this.DrawLine(origin, vectorDirection, length, colour, thickness);	
-//		}
+			this.DrawLine(origin, vectorDirection, length, colour, thickness);	
+		}
 
-//		private void DrawDebugInfo(SpriteBatch spriteBatch)
-//		{
-//			foreach (IDebuggable debugItem in this._debuggables)
-//			{
-//				if (!debugItem.ShowDebugInfo)
-//					continue;
+		private void DrawDebugInfo(SpriteBatch spriteBatch)
+		{
+			foreach (IDebuggable debugItem in this._debuggables)
+			{
+				if (!debugItem.ShowDebugInfo)
+					continue;
 
-//				Vector2 lastPosition = debugItem.GetDebugDrawPosition();
+				Vector2 lastPosition = debugItem.GetDebugDrawPosition();
 
-//				foreach (string debugValue in debugItem.DebugValueNames)
-//				{
-//					string displayedText = "Error";
+				foreach (string debugValue in debugItem.DebugValueNames)
+				{
+					string displayedText = "Error";
 
 
-//					displayedText = debugValue + ": " + debugItem.GetType().GetField(debugValue).GetValue(debugItem);
+					displayedText = debugValue + ": " + debugItem.GetType().GetField(debugValue).GetValue(debugItem);
 
-//					Vector2 drawPosition = new Vector2(lastPosition.X, lastPosition.Y);
-//					lastPosition = new Vector2(drawPosition.X, drawPosition.Y + this._font.MeasureString(displayedText).Y);
+					Vector2 drawPosition = new Vector2(lastPosition.X, lastPosition.Y);
+					lastPosition = new Vector2(drawPosition.X, drawPosition.Y + this._font.MeasureString(displayedText).Y);
 
-//					spriteBatch.DrawString(this._font, displayedText, drawPosition - SceneManager.Instance.ActiveScene.Camera.Position, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
-//				}
-//			}
-//		}
-//	}
-//}
+					spriteBatch.DrawString(this._font, displayedText, drawPosition - SceneManager.Instance.ActiveScene.Camera.Position, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+				}
+			}
+		}
+	}
+}
