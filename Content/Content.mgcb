@@ -32,6 +32,30 @@
 /processorParam:TextureFormat=Compressed
 /build:Textures/Debug/Font.spritefont
 
+#begin Textures/Debug/LightTest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Debug/LightTest.png
+
+#begin Textures/Debug/Screenshot 2024-09-05 225811.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Debug/Screenshot 2024-09-05 225811.png;Textures/Debug/TestImage.png
+
 #begin Textures/Debug/Square.png
 /importer:TextureImporter
 /processor:TextureProcessor

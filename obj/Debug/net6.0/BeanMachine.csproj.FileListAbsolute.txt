@@ -1,110 +1,144 @@
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.AssemblyReference.cache
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.AssemblyInfoInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.AssemblyInfo.cs
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.CoreCompileInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\BeanMachine.exe
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\BeanMachine.deps.json
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\BeanMachine.runtimeconfig.json
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\MonoGame.Framework.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.CopyComplete
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\refint\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\BeanMachine.genruntimeconfig.cache
-M:\Projects\Non-Unity\c#\MonoGame\BeanMachine\obj\Debug\net6.0\ref\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\BeanMachine.exe
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\BeanMachine.deps.json
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\BeanMachine.runtimeconfig.json
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\MonoGame.Framework.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.AssemblyReference.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.AssemblyInfoInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.AssemblyInfo.cs
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.CoreCompileInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.csproj.CopyComplete
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\refint\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\BeanMachine.genruntimeconfig.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\obj\Debug\net6.0\ref\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\BeanMachine.exe
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\BeanMachine.deps.json
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\BeanMachine.runtimeconfig.json
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\MonoGame.Framework.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.AssemblyReference.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfoInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfo.cs
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.CoreCompileInputs.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\refint\BeanMachine.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.pdb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.genruntimeconfig.cache
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\ref\BeanMachine.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\BeanMachine.exe
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\BeanMachine.deps.json
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\BeanMachine.runtimeconfig.json
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\BeanMachine.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\BeanMachine.pdb
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\MonoGame.Framework.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.AssemblyReference.cache
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfoInputs.cache
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.AssemblyInfo.cs
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.CoreCompileInputs.cache
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.sourcelink.json
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.csproj.CopyComplete
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.dll
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\refint\BeanMachine.dll
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.pdb
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\BeanMachine.genruntimeconfig.cache
-C:\Projects\c#\Monogame\Bean-Matchine\obj\Debug\net6.0\ref\BeanMachine.dll
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Square.xnb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Square.xnb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Newtonsoft.Json.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Border.xnb
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Font.xnb
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Border.xnb
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Content\Textures\Debug\Font.xnb
-C:\Projects\c#\Monogame\Bean-Matchine\bin\Debug\net6.0\Newtonsoft.Json.dll
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMachine.sourcelink.json
-M:\Projects\Non-Unity\c#\MonoGame\Engine\BeanMachine\Bean-Matchine\obj\Debug\net6.0\BeanMach.74A30272.Up2Date
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.AssemblyReference.cache
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.AssemblyInfoInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.AssemblyInfo.cs
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.CoreCompileInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/BeanMachine.exe
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/BeanMachine.deps.json
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/BeanMachine.runtimeconfig.json
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/MonoGame.Framework.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.CopyComplete
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/refint/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/BeanMachine.genruntimeconfig.cache
+M:/Projects/Non-Unity/c#/MonoGame/BeanMachine/obj/Debug/net6.0/ref/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/BeanMachine.exe
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/BeanMachine.deps.json
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/BeanMachine.runtimeconfig.json
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/MonoGame.Framework.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.AssemblyReference.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.AssemblyInfoInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.AssemblyInfo.cs
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.CoreCompileInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.csproj.CopyComplete
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/refint/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/BeanMachine.genruntimeconfig.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/obj/Debug/net6.0/ref/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.exe
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.deps.json
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.runtimeconfig.json
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/MonoGame.Framework.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.AssemblyReference.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfoInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfo.cs
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.CoreCompileInputs.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/refint/BeanMachine.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.pdb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.genruntimeconfig.cache
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/ref/BeanMachine.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/BeanMachine.exe
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/BeanMachine.deps.json
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/BeanMachine.runtimeconfig.json
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/BeanMachine.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/BeanMachine.pdb
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/MonoGame.Framework.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.AssemblyReference.cache
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfoInputs.cache
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfo.cs
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.CoreCompileInputs.cache
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.sourcelink.json
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.CopyComplete
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.dll
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/refint/BeanMachine.dll
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.pdb
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/BeanMachine.genruntimeconfig.cache
+C:/Projects/c#/Monogame/Bean-Matchine/obj/Debug/net6.0/ref/BeanMachine.dll
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Square.xnb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Square.xnb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Newtonsoft.Json.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Border.xnb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Font.xnb
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Border.xnb
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Font.xnb
+C:/Projects/c#/Monogame/Bean-Matchine/bin/Debug/net6.0/Newtonsoft.Json.dll
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.sourcelink.json
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMach.74A30272.Up2Date
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/TestImage.xnb
+M:/Projects/Non-Unity/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/LightTest.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Border.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Font.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/LightTest.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/Square.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Content/Textures/Debug/TestImage.xnb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.deps.json
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.runtimeconfig.json
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/BeanMachine.pdb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/MonoGame.Framework.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/Newtonsoft.Json.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/linux-x64/native/libopenal.so.1
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libSDL2.dylib
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/osx/native/libopenal.1.dylib
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/SDL2.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x64/native/soft_oal.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/SDL2.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/bin/Debug/net6.0/runtimes/win-x86/native/soft_oal.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.AssemblyReference.cache
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfoInputs.cache
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.AssemblyInfo.cs
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.CoreCompileInputs.cache
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.sourcelink.json
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.csproj.CopyComplete
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/refint/BeanMachine.dll
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.pdb
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/BeanMachine.genruntimeconfig.cache
+/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/obj/Debug/net6.0/ref/BeanMachine.dll

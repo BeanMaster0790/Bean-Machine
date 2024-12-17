@@ -18,6 +18,8 @@ namespace BeanMachine.Graphics
 
         public EventHandler<EventArgs> GraphicsChanged;
 
+        public Vector2 OSDisplaySize;
+
         private int screenWidth
         {
             get
@@ -48,9 +50,9 @@ namespace BeanMachine.Graphics
             this.GraphicsDevice = device;
             this.GraphicsDeviceManager = deviceManager;
 
-            Vector2 screenSize = this.GetUserDisplaySize();
+            OSDisplaySize = this.GetUserDisplaySize();
 
-            this.SetScreenSize((int)screenSize.X, (int)screenSize.Y);
+            this.SetScreenSize((int)OSDisplaySize.X, (int)OSDisplaySize.Y);
             this.SetFullScreen(true);
         }
 
@@ -65,7 +67,7 @@ namespace BeanMachine.Graphics
             return new Vector2(this.screenWidth, this.screenHeight);
         }
 
-        public Vector2 GetUserDisplaySize()
+        private Vector2 GetUserDisplaySize()
         {
             int width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             int height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;

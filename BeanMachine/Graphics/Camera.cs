@@ -1,6 +1,7 @@
 ﻿using BeanMachine.Debug;
 using BeanMachine.PhysicsSystem;
 using BeanMachine.Player;
+using BeanMachine.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,9 @@ namespace BeanMachine.Graphics
     public class Camera
     {
         public Vector2 Position;
+
+        public Scene Scene;
+
         private float _z;
         private float _baseZ;
 
@@ -24,6 +28,10 @@ namespace BeanMachine.Graphics
         private BasicEffect _effect;
 
         private GraphicsDevice _graphicsDevice;
+
+        public EventHandler SizeChange;
+
+        public bool EnableLighting;
 
         public Camera(GraphicsDevice graphicsDevice)
         {
@@ -54,7 +62,7 @@ namespace BeanMachine.Graphics
 
             GraphicsManager.Instance.GraphicsChanged += this.UpdateAspectRatio;
             GraphicsManager.Instance.GraphicsChanged += this.UpdateMatix;
-        }
+		}
 
         public float GetZFromHeight(float height)
         {
@@ -95,6 +103,8 @@ namespace BeanMachine.Graphics
         {
             this._viewMatrix = Matrix.CreateLookAt(new Vector3(0, 0, this._z), Vector3.Zero, Vector3.Down);
             this._projectionMatrix = Matrix.CreatePerspectiveFieldOfView(this._fov, this._aspectRatio, 1, 8192);
+
+            this.SizeChange?.Invoke(sender, EventArgs.Empty);
         }
 
         public void UpdateAspectRatio(object sender, EventArgs e)
@@ -105,22 +115,37 @@ namespace BeanMachine.Graphics
         public void MoveZ(float amount)
         {
             this._z += amount;
-        }
+			UpdateMatix(this, EventArgs.Empty);
 
-        public void SetZ(float z)
+		}
+
+		public void SetZ(float z)
         {
             this._z = z;
             UpdateMatix(this, EventArgs.Empty);
         }
 
+		BlendState multiplyBlend = new BlendState()
+		{
+			ColorBlendFunction = BlendFunction.Add,
+			ColorSourceBlend = Blend.DestinationColor,
+			ColorDestinationBlend = Blend.Zero,
+		};
 
-        public void Draw(SpriteBatch spriteBatch, List<Component> components)
+		public void Draw(SpriteBatch spriteBatch, List<Component> components)
         {
 
             this._effect.View = this._viewMatrix;
             this._effect.Projection = this._projectionMatrix;
 
-            this._graphicsDevice.Clear(Color.Black);
+            this._graphicsDevice.Clear(Color.Blue);
+
+            RenderTarget2D renderTarget = null;
+
+            if(EnableLighting)
+            {
+                renderTarget = this.Scene.LightingManager.DrawLightingMap(spriteBatch, this._effect);
+            }
 
             spriteBatch.Begin(samplerState: SamplerState.PointClamp, rasterizerState: RasterizerState.CullNone, effect: this._effect, sortMode: SpriteSortMode.FrontToBack);
 
@@ -130,14 +155,24 @@ namespace BeanMachine.Graphics
                     component.Draw(spriteBatch);
             }
 
-            //DebugManager.Instance.Draw(spriteBatch);
+            DebugManager.Instance.Draw(spriteBatch);
 
             spriteBatch.End();
+
+            if(EnableLighting)
+            {
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp, rasterizerState: RasterizerState.CullNone, effect: this._effect, sortMode: SpriteSortMode.Immediate, blendState: multiplyBlend);
+
+                spriteBatch.Draw(renderTarget, Vector2.Zero, null, Color.White, 0, new Vector2(renderTarget.Width / 2, renderTarget.Height / 2), 1, SpriteEffects.None, 0f);
+
+                spriteBatch.End();
+            }
+
         }
 
         public Vector2 ScreenToWorld(Vector2 position)
         {
-            Vector2 screenSize = GraphicsManager.Instance.GetScreenSize();
+            Vector2 screenSize = GraphicsManager.Instance.OSDisplaySize;
 
             Viewport screenViewport = new Viewport(0, 0, (int)screenSize.X, (int)screenSize.Y);
 

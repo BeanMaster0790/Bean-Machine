@@ -114,11 +114,14 @@ namespace BeanMachine
 
             this.Update();
 
+            DebugManager.Instance.Update();
+
+            InputManager.Instance.Update();
+
             Physics.Instance.Update();
 
             Time.Instance.Update(gameTime);
 
-            InputManager.Instance.Update();
 
             this.LateUpdate();
         }

@@ -21,7 +21,7 @@ namespace BeanGame
         {
             base.Load();
 
-            GraphicsManager.Instance.SetFullScreen(false);
+            GraphicsManager.Instance.SetFullScreen(true);
             GraphicsManager.Instance.SetScreenSize(1280, 720);
             GraphicsManager.Instance.ApplyChanges();
 

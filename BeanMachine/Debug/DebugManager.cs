@@ -24,6 +24,7 @@ namespace BeanMachine.Debug
 		private bool ShowDebugInfo = false;
 		private bool ShowColliders = false;
 		private bool ShowLines = false;
+		private bool FreeCam = false;
 
 		private Texture2D _pixel;
 
@@ -47,15 +48,6 @@ namespace BeanMachine.Debug
 				this._pixel.SetData(new Color[] {Color.White});
 			}
 
-			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.D))
-				this.ShowDebugInfo = !this.ShowDebugInfo;
-
-			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.C))
-				this.ShowColliders = !this.ShowColliders;
-
-			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.L))
-				this.ShowLines = !this.ShowLines;
-
 			if (this.ShowDebugInfo)
 				DrawDebugInfo(spriteBatch);
 
@@ -65,6 +57,59 @@ namespace BeanMachine.Debug
 			if(this.ShowLines)
 				DrawLines(spriteBatch);
 
+		}
+
+		public void Update()
+		{
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.D))
+				this.ShowDebugInfo = !this.ShowDebugInfo;
+
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.C))
+				this.ShowColliders = !this.ShowColliders;
+
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.R))
+				this.ShowLines = !this.ShowLines;
+
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.F))
+				this.FreeCam = !this.FreeCam;
+
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.G))
+				SceneManager.Instance.ActiveScene.LightingManager.SetMapSize(this, null);
+
+			if (InputManager.Instance.IsKeyHeld(Keys.F12) && InputManager.Instance.WasKeyPressed(Keys.L))
+				SceneManager.Instance.ActiveScene.Camera.EnableLighting = !SceneManager.Instance.ActiveScene.Camera.EnableLighting;
+
+			if (this.FreeCam)
+				MoveCam();
+		}
+
+		private void MoveCam()
+		{
+			if (InputManager.Instance.IsKeyHeld(Keys.W))
+			{
+				SceneManager.Instance.ActiveScene.Camera.Position.Y -= 5;
+			}
+			if (InputManager.Instance.IsKeyHeld(Keys.S))
+			{
+				SceneManager.Instance.ActiveScene.Camera.Position.Y += 5;
+			}
+			if (InputManager.Instance.IsKeyHeld(Keys.A))
+			{
+				SceneManager.Instance.ActiveScene.Camera.Position.X -= 5;
+			}
+			if (InputManager.Instance.IsKeyHeld(Keys.D))
+			{
+				SceneManager.Instance.ActiveScene.Camera.Position.X += 5;
+			}
+
+			if (InputManager.Instance.IsKeyHeld(Keys.Add))
+			{
+				SceneManager.Instance.ActiveScene.Camera.MoveZ(3);
+			}
+			if (InputManager.Instance.IsKeyHeld(Keys.Subtract))
+			{
+				SceneManager.Instance.ActiveScene.Camera.MoveZ(-3);
+			}
 		}
 
 		private void DrawLines(SpriteBatch spriteBatch)

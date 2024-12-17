@@ -50,7 +50,7 @@ namespace BeanMachine.Graphics
 
         public float Rotation;
 
-        public float Scale;
+        public float Scale = 1;
         
         public SpriteEffects spriteEffect;
 
@@ -162,6 +162,10 @@ namespace BeanMachine.Graphics
 
         }
 
+        public void ChangeTexture(Texture2D texture)
+        {
+            this._texture = texture;
+        }
 
         public override void Start()
         {

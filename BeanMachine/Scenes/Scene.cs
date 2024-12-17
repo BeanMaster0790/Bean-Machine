@@ -1,4 +1,5 @@
 ﻿using BeanMachine.Graphics;
+using BeanMachine.Graphics.Lighting;
 using BeanMachine.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,8 @@ namespace BeanMachine.Scenes
 
         public SoundManager SoundManager { get; private set; }
 
+        public LightingManager LightingManager { get; private set; }
+
 
         public Scene(string name)
         {
@@ -27,8 +30,11 @@ namespace BeanMachine.Scenes
             this.Name = name;
 
             this.Camera = new Camera(GraphicsManager.Instance.GraphicsDevice);
+            this.Camera.Scene = this;
 
             this.SoundManager = new SoundManager();
+
+            this.LightingManager = new LightingManager(this.Camera);
         }
 
         public virtual void AddToScene(Component component)

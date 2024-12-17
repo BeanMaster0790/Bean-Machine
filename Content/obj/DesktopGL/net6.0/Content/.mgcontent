@@ -4,13 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Projects/c#/Monogame/Bean-Matchine/Content/Textures/Debug/Border.png</File>
-    <File>C:/Projects/c#/Monogame/Bean-Matchine/Content/Textures/Debug/Font.spritefont</File>
-    <File>C:/Projects/c#/Monogame/Bean-Matchine/Content/Textures/Debug/Square.png</File>
+    <File>/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Border.png</File>
+    <File>/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Font.spritefont</File>
+    <File>/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/LightTest.png</File>
+    <File>/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Screenshot 2024-09-05 225811.png</File>
+    <File>/mnt/72282F6B282F2E13/Personal Files/Projects/c#/MonoGame/Engine/BeanMachine/Bean-Matchine/Content/Textures/Debug/Square.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>Textures/Debug/TestImage.png</File>
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

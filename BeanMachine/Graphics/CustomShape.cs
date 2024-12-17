@@ -11,42 +11,112 @@ namespace BeanMachine.Graphics
 {
 	public class CustomShape
 	{
-		public Texture2D Texture;
-		private Vector2[] _points;
+		public Texture2D Texture {
 
-		private Vector2[] outlineVectors;
+			get 
+			{
+				if(this._texture == null)
+				{
+					CreateTexture();
+				}
 
-		private Color[] _texData; 
-
-		public CustomShape(List<Vector2> points)
-		{
-			this._points = points.ToArray();
-
-			this.InitializeTexture();
-			this.SetTextureOutline();
-			this.SetTextureFill();
-
-			this.Texture.SetData(this._texData);
+				return this._texture;
+			}
+		
 		}
 
-		public void InitializeTexture()
+		private int _width;
+		private int _height;
+
+		private int _centerX;
+		private int _centerY;
+
+		public Color Colour;
+
+		protected Texture2D _texture;
+
+		protected bool _fillShape;
+
+		protected Vector2[] _points;
+
+		protected Vector2[] outlineVectors;
+
+		protected Color[] _texData;
+
+		public CustomShape(int width = 0, int height = 0, bool fillShape = true, Color? colour = null)
+		{
+			this._fillShape = fillShape;
+
+			this._width = width;
+			this._height = height;
+
+			if (colour == null)
+				this.Colour = Color.White;
+			else
+				this.Colour = (Color)colour;
+		}
+
+		public void SetPoints(List<Vector2> points)
+		{
+			this._points = new Vector2[points.Count];
+
+			for (int i = 0; i < points.Count; i++)
+			{
+				Vector2 point = points[i];
+
+				this._points[i] = new Vector2((int)point.X, (int)point.Y);
+			}
+
+			this._texture = null;
+		}
+
+		private void CreateTexture()
+		{
+			this.InitializeTexture();
+			this.SetTextureOutline();
+
+			if (this._fillShape)
+				this.SetTextureFill();
+
+			this._texture.SetData(this._texData);
+		}
+
+		protected virtual void InitializeTexture()
+		{
+			if(this._height == 0 && this._width == 0)
+				AutoCalculateSize();
+			else
+				this._texture = new Texture2D(GraphicsManager.Instance.GraphicsDevice, this._width, this._height);
+
+			this._centerX = this._texture.Width / 2;
+			this._centerY = this._texture.Height / 2;
+		}
+
+		private void AutoCalculateSize()
 		{
 			int maxX = 0;
 			int maxY = 0;
 
-			foreach (Vector2 point in this._points) 
-			{ 
-				if(point.X > maxX) maxX = (int)point.X;
+			int minX = 0;
+			int minY = 0;
+
+			foreach (Vector2 point in this._points)
+			{
+				if (point.X > maxX) maxX = (int)point.X;
 
 				if (point.Y > maxY) maxY = (int)point.Y;
+
+				if (point.X < minX) minX = (int)point.X;
+
+				if (point.Y < minY) minY = (int)point.Y;
 			}
 
-			this.Texture = new Texture2D(GraphicsManager.Instance.GraphicsDevice, maxX + 1, maxY + 1);
+			this._texture = new Texture2D(GraphicsManager.Instance.GraphicsDevice, (maxX - minX), (maxY - minY));
 		}
 
-		public void SetTextureOutline()
+		protected virtual void SetTextureOutline()
 		{
-			this._texData = new Color[Texture.Width * Texture.Height];
+			this._texData = new Color[_texture.Width * _texture.Height];
 
 			List<Vector2> filledPixels = new List<Vector2>();
 
@@ -107,36 +177,66 @@ namespace BeanMachine.Graphics
 				this.outlineVectors = filledPixels.ToArray();
 			}
 
-			foreach(Vector2 point in filledPixels)
-			{
-				this._texData[VectorToIndex(point)] = Color.White;
-			}
+			ApplyFilledPixels(filledPixels);
 
 		}
 
-		public void SetTextureFill()
+		protected virtual void SetTextureFill()
 		{
-			bool filling = true;
+			var pointsByY = outlineVectors.GroupBy(p => p.Y).OrderBy(group => group.Key);
 
-			for (int i = 0; i < this._texData.Length; i++)
+			List<Vector2> filledPixels = new List<Vector2>();
+
+			foreach(var group in pointsByY)
 			{
-				Color color = this._texData[i];
+				int y = (int)group.Key;
+				List<int> xValues = group.Select(p => (int)p.X).OrderBy(x => x).ToList();
 
-				if (color != new Color(0, 0, 0, 0))
+				if (xValues.Count <= 1)
+					continue;
+
+				for (int i = 0; i < xValues.Count - 1; i += 1)
 				{
-					filling = !filling;
+					int startX = xValues[i];
+					int endX = xValues[i + 1];
+
+					for(int x = startX; x < endX; x++)
+					{
+						filledPixels.Add(new Vector2(x, y));
+					}
 				}
 
-				if (filling)
-				{
-					this._texData[i] = Color.White;
-				}
+			}
+
+			ApplyFilledPixels(filledPixels);
+		}
+
+		public virtual int VectorToIndex(Vector2 point)
+		{
+			// Adjust the point to be relative to the center
+			int adjustedX = (int)point.X + this._centerX;
+			int adjustedY = (int)point.Y + this._centerY;
+
+			// Wrap coordinates manually without using double modulus
+			if (adjustedX < 0) adjustedX += this._texture.Width;
+			else if (adjustedX >= this._texture.Width) adjustedX -= this._texture.Width;
+
+			if (adjustedY < 0) adjustedY += this._texture.Height;
+			else if (adjustedY >= this._texture.Height) adjustedY -= this._texture.Height;
+
+			// Calculate the index using the wrapped coordinates
+			return (adjustedY * this._texture.Width) + adjustedX;
+		}
+
+		protected virtual void ApplyFilledPixels(IEnumerable<Vector2> pixels)
+		{
+			foreach (Vector2 point in pixels)
+			{
+				int index = VectorToIndex(point);
+				if (index >= 0 && index < _texData.Length)
+					_texData[index] = Colour;
 			}
 		}
 
-		public int VectorToIndex(Vector2 point)
-		{
-			return ((int)point.Y * this.Texture.Width) + (int)point.X;
-		}
 	}
 }

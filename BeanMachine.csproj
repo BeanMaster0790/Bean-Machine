@@ -9,18 +9,8 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="BeanMachine\NewFolder\**" />
-    <Compile Remove="NewFolder\**" />
-    <EmbeddedResource Remove="BeanMachine\NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="BeanMachine\NewFolder\**" />
-    <None Remove="NewFolder\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Debug.xml" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

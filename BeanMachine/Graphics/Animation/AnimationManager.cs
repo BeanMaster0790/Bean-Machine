@@ -66,7 +66,7 @@ namespace BeanMachine.Graphics.Animations
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //if (this.CurrentAnimation.Frames == 0)
             //{
